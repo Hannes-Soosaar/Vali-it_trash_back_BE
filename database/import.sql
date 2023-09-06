@@ -10,7 +10,9 @@ INSERT INTO color(id, name) VALUES (DEFAULT, 'Sinine');
 INSERT INTO color(id, name) VALUES (DEFAULT, 'Roheline');
 INSERT INTO color(id, name) VALUES (DEFAULT, 'Pruun');
 
---Insert data into the 'category' table.
+
+--Insert data into the 'category' table. KAS OLMET ON VAJA?
+
 INSERT INTO category (id, name) VALUES (DEFAULT, 'Plast- ja metallpakend, joogikartong');
 INSERT INTO category (id, name) VALUES (DEFAULT, 'Olme');
 INSERT INTO category (id, name) VALUES (DEFAULT, 'Papp- ja paberpakend');
@@ -18,6 +20,7 @@ INSERT INTO category (id, name) VALUES (DEFAULT, 'Klaaspakend');
 INSERT INTO category (id, name) VALUES (DEFAULT, 'Biojäätmed');
 
 --Insert data into the 'bin' table
+
 INSERT INTO bin (id, color_id, name, requirements) VALUES (DEFAULT, 1, 'Plast- ja metallpakendi konteiner', 'Loputa vajadusel, et ei määriks teisi pakendeid. Jäta korgid ja kaaned peale');
 INSERT INTO bin (id, color_id, name, requirements) VALUES (DEFAULT, 2, 'Olmeprügi konteiner', '');
 INSERT INTO bin (id, color_id, name, requirements) VALUES (DEFAULT, 3, 'Papp- ja paberpakendi konteiner', 'Voldi suured papist pakendid kokku või rebi tükkideks. Veendu, et materjal on kuiv.');
@@ -39,7 +42,6 @@ INSERT INTO material(id, category_id, bin_id, name) VALUES (DEFAULT, 4, 4, 'GL-7
 INSERT INTO material(id, category_id, bin_id, name) VALUES (DEFAULT, 4, 4, 'GL-72');
 INSERT INTO material(id, category_id, bin_id, name) VALUES (DEFAULT, 1, 1, 'FE');
 INSERT INTO material(id, category_id, bin_id, name) VALUES (DEFAULT, 1, 1, 'ALU');
-
 INSERT INTO material(id, category_id, bin_id, name) VALUES (DEFAULT, 2, 2, 'materjal, mida pole võimalik taaskasutada');
 INSERT INTO material(id, category_id, bin_id, name) VALUES (DEFAULT, 5, 5, 'biolagunev');
 
@@ -49,8 +51,6 @@ INSERT INTO material(id, category_id, bin_id, name) VALUES (DEFAULT, 5, 5, 'biol
 --Insert data into the 'image' table
 INSERT INTO image (id, data) VALUES (DEFAULT, E'\\x89504E470D0A1A0A');
 
-
--- Insert data into the 'user' table (siin pole company_id foreign key)
 INSERT INTO "user"(id, role_id, company_id, email, password, status) VALUES (DEFAULT, 2, 1, 'valio@valio.ee', 'valio', 'A');
 
 --Insert data into the 'company' table
