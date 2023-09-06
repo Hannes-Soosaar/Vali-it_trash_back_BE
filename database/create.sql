@@ -1,120 +1,171 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2023-05-08 10:25:23.294
+-- Last modification date: 2023-09-05 13:21:31.888
 
 -- tables
--- Table: role
-CREATE TABLE role
-(
-    id   serial      NOT NULL,
-    name varchar(50) NOT NULL,
-    CONSTRAINT role_pk PRIMARY KEY (id)
+-- Table: bin
+CREATE TABLE bin (
+                     id serial  NOT NULL,
+                     color_id int  NOT NULL,
+                     name varchar(255)  NOT NULL,
+                     requiements varchar(255)  NULL,
+                     CONSTRAINT bin_pk PRIMARY KEY (id)
 );
 
--- Table: user
-CREATE TABLE "user"
-(
-    id       serial       NOT NULL,
-    role_id  int          NOT NULL,
-    username varchar(255) NOT NULL,
-    password varchar(255) NOT NULL,
-    status   char(1)      NOT NULL,
-    CONSTRAINT user_ak_1 UNIQUE (username) NOT DEFERRABLE INITIALLY IMMEDIATE,
-    CONSTRAINT user_pk PRIMARY KEY (id)
+-- Table: category
+CREATE TABLE category (
+                          id serial  NOT NULL,
+                          name varchar(255)  NOT NULL,
+                          CONSTRAINT category_pk PRIMARY KEY (id)
 );
 
-CREATE TABLE city
-(
-    id   serial       NOT NULL,
-    name varchar(255) NOT NULL,
-    CONSTRAINT city_ak_1 UNIQUE (name) NOT DEFERRABLE INITIALLY IMMEDIATE,
-    CONSTRAINT city_pk PRIMARY KEY (id)
+-- Table: color
+CREATE TABLE color (
+                       id serial  NOT NULL,
+                       name varchar(255)  NOT NULL,
+                       CONSTRAINT color_pk PRIMARY KEY (id)
+);
+
+-- Table: company
+CREATE TABLE company (
+                         id serial  NOT NULL,
+                         user_id int  NOT NULL,
+                         name varchar(255)  NOT NULL,
+                         registrationcode int  NOT NULL,
+                         CONSTRAINT company_pk PRIMARY KEY (id)
 );
 
 -- Table: image
-CREATE TABLE image
-(
-    id   serial NOT NULL,
-    data bytea  NOT NULL,
-    CONSTRAINT image_pk PRIMARY KEY (id)
+CREATE TABLE image (
+                       id serial  NOT NULL,
+                       data bytea  NOT NULL,
+                       CONSTRAINT image_pk PRIMARY KEY (id)
 );
 
--- Table: location
-CREATE TABLE location
-(
-    id             serial       NOT NULL,
-    city_id        int          NOT NULL,
-    name           varchar(255) NOT NULL,
-    number_of_atms int          NOT NULL,
-    image_id       int          NULL,
-    status         char(1)      NOT NULL,
-    CONSTRAINT location_ak_1 UNIQUE (name) NOT DEFERRABLE INITIALLY IMMEDIATE,
-    CONSTRAINT location_pk PRIMARY KEY (id)
+-- Table: material
+CREATE TABLE material (
+                          id serial  NOT NULL,
+                          category_id int  NOT NULL,
+                          bin_id int  NOT NULL,
+                          name varchar(255)  NOT NULL,
+                          CONSTRAINT material_pk PRIMARY KEY (id)
 );
 
--- Table: transaction_type
-CREATE TABLE transaction_type
-(
-    id   serial      NOT NULL,
-    name varchar(50) NOT NULL,
-    CONSTRAINT transaction_type_ak_1 UNIQUE (name) NOT DEFERRABLE INITIALLY IMMEDIATE,
-    CONSTRAINT transaction_type_pk PRIMARY KEY (id)
+-- Table: product
+CREATE TABLE product (
+                         id serial  NOT NULL,
+                         company_id int  NOT NULL,
+                         image_id int  NULL,
+                         name varchar(255)  NOT NULL,
+                         upc varchar(14)  NOT NULL,
+                         info varchar(255)  NOT NULL,
+                         status char(1)  NOT NULL,
+                         CONSTRAINT product_pk PRIMARY KEY (id)
 );
 
--- Table: location_transaction_type
-CREATE TABLE location_transaction_type
-(
-    id                  serial  NOT NULL,
-    transaction_type_id int     NOT NULL,
-    location_id         int     NOT NULL,
-    is_selected         boolean NOT NULL,
-    CONSTRAINT location_transaction_type_pk PRIMARY KEY (id)
+-- Table: product_material
+CREATE TABLE product_material (
+                                  id serial  NOT NULL,
+                                  product_id int  NOT NULL,
+                                  material_id int  NOT NULL,
+                                  CONSTRAINT product_material_pk PRIMARY KEY (id)
 );
+
+-- Table: role
+CREATE TABLE role (
+                      id serial  NOT NULL,
+                      name varchar(255)  NOT NULL,
+                      CONSTRAINT role_pk PRIMARY KEY (id)
+);
+
+-- Table: user
+CREATE TABLE "user" (
+                        id serial  NOT NULL,
+                        role_id int  NOT NULL,
+                        company_id int  NOT NULL,
+                        email varchar(255)  NOT NULL,
+                        password varchar(30)  NOT NULL,
+                        status char(1)  NOT NULL,
+                        CONSTRAINT user_pk PRIMARY KEY (id)
+);
+
+-- foreign keys
+-- Reference: bin_color (table: bin)
+ALTER TABLE bin ADD CONSTRAINT bin_color
+    FOREIGN KEY (color_id)
+        REFERENCES color (id)
+        NOT DEFERRABLE
+            INITIALLY IMMEDIATE
+;
+-- Reference: company_user (table: company)
+ALTER TABLE company ADD CONSTRAINT company_user
+    FOREIGN KEY (user_id)
+        REFERENCES "user" (id)
+        NOT DEFERRABLE
+            INITIALLY IMMEDIATE
+;
+
+-- Reference: material_bin (table: material)
+ALTER TABLE material ADD CONSTRAINT material_bin
+    FOREIGN KEY (bin_id)
+        REFERENCES bin (id)
+        NOT DEFERRABLE
+            INITIALLY IMMEDIATE
+;
+
+-- Reference: material_category (table: material)
+ALTER TABLE material ADD CONSTRAINT material_category
+    FOREIGN KEY (category_id)
+        REFERENCES category (id)
+        NOT DEFERRABLE
+            INITIALLY IMMEDIATE
+;
+
+-- Reference: product_company (table: product)
+ALTER TABLE product ADD CONSTRAINT product_company
+    FOREIGN KEY (company_id)
+        REFERENCES company (id)
+        NOT DEFERRABLE
+            INITIALLY IMMEDIATE
+;
+
+-- Reference: product_image (table: product)
+ALTER TABLE product ADD CONSTRAINT product_image
+    FOREIGN KEY (image_id)
+        REFERENCES image (id)
+        NOT DEFERRABLE
+            INITIALLY IMMEDIATE
+;
+
+-- Reference: product_material_material (table: product_material)
+ALTER TABLE product_material ADD CONSTRAINT product_material_material
+    FOREIGN KEY (material_id)
+        REFERENCES material (id)
+        NOT DEFERRABLE
+            INITIALLY IMMEDIATE
+;
+
+-- Reference: product_material_product (table: product_material)
+ALTER TABLE product_material ADD CONSTRAINT product_material_product
+    FOREIGN KEY (product_id)
+        REFERENCES product (id)
+        NOT DEFERRABLE
+            INITIALLY IMMEDIATE
+;
 
 -- Reference: user_role (table: user)
-ALTER TABLE "user"
-    ADD CONSTRAINT user_role
-        FOREIGN KEY (role_id)
-            REFERENCES role (id)
-            ON DELETE CASCADE
-            NOT DEFERRABLE
-                INITIALLY IMMEDIATE
+ALTER TABLE "user" ADD CONSTRAINT user_role
+    FOREIGN KEY (role_id)
+        REFERENCES role (id)
+        NOT DEFERRABLE
+            INITIALLY IMMEDIATE
+;
+--kas on vaja?
+--ALTER TABLE "user" ADD CONSTRAINT company_id
+--    FOREIGN KEY (company_id)
+    --    REFERENCES company (id)
+   --     NOT DEFERRABLE
+   --         INITIALLY IMMEDIATE
 ;
 
--- Reference: location_city (table: location)
-ALTER TABLE location
-    ADD CONSTRAINT location_city
-        FOREIGN KEY (city_id)
-            REFERENCES city (id)
-            NOT DEFERRABLE
-                INITIALLY IMMEDIATE
-;
-
--- Reference: location_image (table: location)
-ALTER TABLE location
-    ADD CONSTRAINT location_image
-        FOREIGN KEY (image_id)
-            REFERENCES image (id)
-            NOT DEFERRABLE
-                INITIALLY IMMEDIATE
-;
-
--- Reference: location_transaction_type_location (table: location_transaction_type)
-ALTER TABLE location_transaction_type
-    ADD CONSTRAINT location_transaction_type_location
-        FOREIGN KEY (location_id)
-            REFERENCES location (id)
-            NOT DEFERRABLE
-                INITIALLY IMMEDIATE
-;
-
--- Reference: location_transaction_type_transaction (table: location_transaction_type)
-ALTER TABLE location_transaction_type
-    ADD CONSTRAINT location_transaction_transaction
-        FOREIGN KEY (transaction_type_id)
-            REFERENCES transaction_type (id)
-            NOT DEFERRABLE
-                INITIALLY IMMEDIATE
-;
 
 -- End of file.
-
