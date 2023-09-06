@@ -96,6 +96,7 @@ ALTER TABLE bin ADD CONSTRAINT bin_color
         NOT DEFERRABLE
             INITIALLY IMMEDIATE
 ;
+
 -- Reference: company_user (table: company)
 ALTER TABLE company ADD CONSTRAINT company_user
     FOREIGN KEY (user_id)
@@ -158,14 +159,4 @@ ALTER TABLE "user" ADD CONSTRAINT user_role
         REFERENCES role (id)
         NOT DEFERRABLE
             INITIALLY IMMEDIATE
-;
---kas on vaja?
---ALTER TABLE "user" ADD CONSTRAINT company_id
---    FOREIGN KEY (company_id)
-    --    REFERENCES company (id)
-   --     NOT DEFERRABLE
-   --         INITIALLY IMMEDIATE
-;
 
-
--- End of file.
