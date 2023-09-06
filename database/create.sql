@@ -7,7 +7,7 @@ CREATE TABLE bin (
                      id serial  NOT NULL,
                      color_id int  NOT NULL,
                      name varchar(255)  NOT NULL,
-                     requiements varchar(255)  NULL,
+                     requirements varchar(255)  NULL,
                      CONSTRAINT bin_pk PRIMARY KEY (id)
 );
 
