@@ -62,6 +62,8 @@ INSERT INTO product (id, company_id, image_id, name, upc, info, status) VALUES (
 
 --Insert data into the 'product_material' table
 INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 1, 1);
+INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 1, 14);
+INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 1, 7);
 
 
 
