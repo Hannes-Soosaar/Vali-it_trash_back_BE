@@ -1,10 +1,11 @@
-package trash_back;
+package trash_back.domain.user;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import trash_back.domain.Role;
 
 @Getter
 @Setter

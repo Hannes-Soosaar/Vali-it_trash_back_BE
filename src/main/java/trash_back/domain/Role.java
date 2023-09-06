@@ -1,4 +1,4 @@
-package trash_back;
+package trash_back.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,8 +12,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "color")
-public class Color {
+@Table(name = "role")
+public class Role {
     @Id
     @Column(name = "id", nullable = false)
     private Integer id;

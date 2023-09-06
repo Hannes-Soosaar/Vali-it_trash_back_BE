@@ -1,4 +1,4 @@
-package trash_back;
+package trash_back.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
