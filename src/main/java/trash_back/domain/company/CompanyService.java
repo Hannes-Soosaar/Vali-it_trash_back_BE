@@ -1,9 +1,7 @@
-package trash_back.business.company;
+package trash_back.domain.company;
 
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
-import trash_back.domain.Company;
-import trash_back.domain.CompanyRepository;
 
 @Service
 public class CompanyService {
