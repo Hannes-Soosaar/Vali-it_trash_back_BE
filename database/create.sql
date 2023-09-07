@@ -81,7 +81,6 @@ CREATE TABLE role (
 CREATE TABLE "user" (
                         id serial  NOT NULL,
                         role_id int  NOT NULL,
-                        company_id int  NOT NULL,
                         email varchar(255)  NOT NULL,
                         password varchar(30)  NOT NULL,
                         status char(1)  NOT NULL,

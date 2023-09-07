@@ -51,7 +51,8 @@ INSERT INTO material(id, category_id, bin_id, name) VALUES (DEFAULT, 5, 5, 'biol
 --Insert data into the 'image' table
 INSERT INTO image (id, data) VALUES (DEFAULT, E'\\x89504E470D0A1A0A');
 
-INSERT INTO "user"(id, role_id, company_id, email, password, status) VALUES (DEFAULT, 2, 1, 'valio@valio.ee', 'valio', 'A');
+INSERT INTO "user"(id, role_id, email, password, status) VALUES (DEFAULT, 2, 'tairi', '123', 'A');
+INSERT INTO "user"(id, role_id, email, password, status) VALUES (DEFAULT, 1, 'admin ', '123', 'A');
 
 --Insert data into the 'company' table
 INSERT INTO company (id, user_id, name, registrationcode) VALUES (DEFAULT, 1, 'Valio Eesti AS', 10261303);
