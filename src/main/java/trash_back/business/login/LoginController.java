@@ -5,6 +5,7 @@ import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import trash_back.domain.user.UserDto;
 
 @RestController
 public class LoginController {
@@ -14,9 +15,9 @@ public class LoginController {
 
     @GetMapping("/login")
 
-    public void login(@RequestParam String username, @RequestParam String password) {
-
-        loginService.login(username,password);
+    public UserDto login(@RequestParam String username, @RequestParam String password) {
+        UserDto userDto = loginService.login(username, password);
+        return userDto;
     }
 
 
