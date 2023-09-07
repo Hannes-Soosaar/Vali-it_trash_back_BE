@@ -22,10 +22,6 @@ public class User {
     @JoinColumn(name = "role_id", nullable = false)
     private Role role;
 
-    @NotNull
-    @Column(name = "company_id", nullable = false)
-    private Integer companyId;
-
     @Size(max = 255)
     @NotNull
     @Column(name = "email", nullable = false)
