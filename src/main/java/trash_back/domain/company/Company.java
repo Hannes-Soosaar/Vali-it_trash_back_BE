@@ -1,4 +1,4 @@
-package trash_back.domain;
+package trash_back.domain.company;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
