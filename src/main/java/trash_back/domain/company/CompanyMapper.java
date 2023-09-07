@@ -1,6 +1,7 @@
 package trash_back.domain.company;
 
 import org.mapstruct.*;
+import trash_back.business.company.CompanyInfo;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
 public interface CompanyMapper {

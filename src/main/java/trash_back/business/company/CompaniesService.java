@@ -4,8 +4,8 @@ package trash_back.business.company;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import trash_back.domain.company.Company;
-import trash_back.domain.company.CompanyInfo;
 import trash_back.domain.company.CompanyMapper;
+import trash_back.domain.company.CompanyService;
 
 @Service
 public class CompaniesService {
