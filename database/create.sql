@@ -159,6 +159,4 @@ ALTER TABLE "user" ADD CONSTRAINT user_role
         REFERENCES role (id)
         NOT DEFERRABLE
             INITIALLY IMMEDIATE
-;
 
--- End of file.
