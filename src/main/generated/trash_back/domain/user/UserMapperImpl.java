@@ -2,11 +2,12 @@ package trash_back.domain.user;
 
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
+import trash_back.business.login.LoginResponse;
 import trash_back.domain.Role;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-09-07T10:17:07+0300",
+    date = "2023-09-07T10:20:29+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 19.0.2 (Amazon.com Inc.)"
 )
 @Component

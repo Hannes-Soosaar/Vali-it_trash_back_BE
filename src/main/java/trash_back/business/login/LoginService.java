@@ -2,7 +2,6 @@ package trash_back.business.login;
 
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
-import trash_back.domain.user.LoginResponse;
 import trash_back.domain.user.User;
 import trash_back.domain.user.UserMapper;
 import trash_back.domain.user.UserService;

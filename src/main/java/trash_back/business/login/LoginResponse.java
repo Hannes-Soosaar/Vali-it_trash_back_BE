@@ -1,8 +1,9 @@
-package trash_back.domain.user;
+package trash_back.business.login;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import trash_back.domain.user.User;
 
 import java.io.Serializable;
 
