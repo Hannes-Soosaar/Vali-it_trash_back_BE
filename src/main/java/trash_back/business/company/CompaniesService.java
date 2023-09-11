@@ -58,6 +58,7 @@ public class CompaniesService {
         Role role = roleService.getRoleUser();
         // user mapperi abil tekitad uue user objekti, saad ära täita väljad email, password ja status
         User user = userMapper.toUser(companyRequest);
+
         // nüüd saad user objektile panna külge setteri abil rolli
         user.setRole(role);
         // nüüd saad useri ära salvestada (userService --> userRepository)
