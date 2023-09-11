@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import trash_back.infrastructure.error.ApiError;
@@ -31,4 +32,5 @@ public class ProductsController {
         List<ProductProfile> productProfiles = productsService.getProductProfile(companyId);
         return productProfiles;
     }
+
 }

@@ -24,4 +24,15 @@ public class UserService {
 
 
     }
+
+    public void saveUser(User user) {
+        userRepository.save(user);
+    }
+
+    public void validateEmailIsAvailable(String email) {
+
+        boolean userExists = userRepository.userExistsByEmail(email);
+
+        ValidationService.validateEmailIsAvailable(userExists);
+    }
 }
