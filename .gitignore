@@ -35,4 +35,5 @@ out/
 
 ### VS Code ###
 .vscode/
+/src/main/generated/trash_back/domain/user/UserMapperImpl.java
 /src/main/generated/

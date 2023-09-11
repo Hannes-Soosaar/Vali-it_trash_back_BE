@@ -13,9 +13,10 @@ public class CompaniesController {
 
     @GetMapping ("/company/info")
 
-    public CompanyInfo getCompanyInfo(@RequestParam Integer userId){
+    public CompanyInfo getCompanyInfo(@RequestParam Integer userId) {
 
         CompanyInfo companyInfo = companiesService.getCompanyInfo(userId);
         return companyInfo;
     }
+
 }
