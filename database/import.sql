@@ -56,9 +56,15 @@ INSERT INTO "user"(id, role_id, email, password, status) VALUES (DEFAULT, 1, 'ad
 
 --Insert data into the 'company' table
 INSERT INTO company (id, user_id, name, registrationcode) VALUES (DEFAULT, 1, 'Valio Eesti AS', 10261303);
+INSERT INTO company (id, user_id, name, registrationcode) VALUES (DEFAULT, 1, 'Get stuff Co.', 10261302);
+INSERT INTO company (id, user_id, name, registrationcode) VALUES (DEFAULT, 1, 'Trash llc', 10261301);
 
 --Insert data into the 'product' table EI TÖÖTA
 INSERT INTO product (id, company_id, image_id, name, upc, info, status) VALUES (DEFAULT, 1, 1, 'Alma hapukoor 10% 250g', '133456789012', 'pese ja viska', 'A' );
+INSERT INTO product (id, company_id, image_id, name, upc, info, status) VALUES (DEFAULT, 2, 1, 'Alma hapukoor 20% ' ||
+                                                                                               '250g', '133456789012', 'pese ja viska', 'A' );
+INSERT INTO product (id, company_id, image_id, name, upc, info, status) VALUES (DEFAULT, 3, 1, 'Alma hapukoor 30% ' ||
+                                                                                               '250g', '133456789012', 'pese ja viska', 'A' );
 
 
 --Insert data into the 'product_material' table
