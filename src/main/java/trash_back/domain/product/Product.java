@@ -1,10 +1,12 @@
-package trash_back.domain;
+package trash_back.domain.product;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import trash_back.domain.Image;
+import trash_back.domain.company.Company;
 
 @Getter
 @Setter

@@ -14,7 +14,7 @@ public class ValidationService {
         }
         return optionalUser.get();
 
-
+// TODO: 07.09.2023 tee errori enumid error koodist 
 
     }
 }

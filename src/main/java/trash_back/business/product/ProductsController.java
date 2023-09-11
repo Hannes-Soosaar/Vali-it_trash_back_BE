@@ -1,5 +1,4 @@
-package trash_back.business.login;
-
+package trash_back.business.product;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -12,28 +11,24 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import trash_back.infrastructure.error.ApiError;
 
+import java.util.List;
+
 @RestController
-public class LoginController {
+public class ProductsController {
 
     @Resource
-   private LoginService loginService;
+    private ProductsService productsService;
 
-    @GetMapping("/login")
-    @Operation(summary = "Sisse logimine. Tagastab userId ja roleName",
-            description = """
-                Süsteemist otsitakse username ja password abil kasutajat, kelle konto on ka aktiivne.
-                Kui vastet ei leita visatakse viga errorCode'ga 111""")
+    @GetMapping("/products")
+    @Operation(summary = "tagastab toote profiili",
+            description = "companyId järgi saab konkreets toote kätte")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK"),
-            @ApiResponse(responseCode = "403", description = "message: Vale kasutajanimi või parool koos. errorCode: 111",
+            @ApiResponse(responseCode = "404", description = "Ei leitud ühtegi toodet",
                     content = @Content(schema = @Schema(implementation = ApiError.class)))})
 
-    public LoginResponse login(@RequestParam String email, @RequestParam String password) {
-
-
-        LoginResponse loginResponse = loginService.login(email, password);
-        return loginResponse;
+    public List<ProductProfile> getProductProfile(@RequestParam Integer companyId) {
+        List<ProductProfile> productProfiles = productsService.getProductProfile(companyId);
+        return productProfiles;
     }
-
-
 }
