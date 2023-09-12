@@ -1,4 +1,4 @@
-package trash_back.domain.product.material.info;
+package trash_back.domain.product.material.properties;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
