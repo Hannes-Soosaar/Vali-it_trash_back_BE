@@ -40,7 +40,7 @@ public class CompaniesController {
                 Sisse tuleb email, parool, ettevõtte nimi ja ettevõtte reg nr. Need salvestatakse andmebaasi.""")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK"),
-            @ApiResponse(responseCode = "", description = "",
+            @ApiResponse(responseCode = "403", description = "Kasutaja email on juba olemas",
                     content = @Content(schema = @Schema(implementation = ApiError.class)))})
 
     public void addUserAndCompany(@RequestBody CompanyRequest companyRequest) {
