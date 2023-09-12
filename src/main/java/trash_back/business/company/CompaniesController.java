@@ -19,6 +19,15 @@ public class CompaniesController {
 
     @GetMapping("/company/info")
 
+    @Operation(summary = "User Id järgi otsitakse ettevõtte andmeid.",
+            description = """
+                Otsitavad andmed companyId, companyName ja registration code
+                """)
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK"),
+            @ApiResponse(responseCode = "", description = "",
+                    content = @Content(schema = @Schema(implementation = ApiError.class)))})
+
     public CompanyInfo getCompanyInfo(@RequestParam Integer userId) {
 
         CompanyInfo companyInfo = companiesService.getCompanyInfo(userId);
@@ -26,12 +35,12 @@ public class CompaniesController {
     }
 
     @PostMapping("/company")
-    @Operation(summary = "Uue kasutaja registreerimine",
+    @Operation(summary = "Uue aktiivse kasutaja registreerime koos ettevõttega",
             description = """
                 Sisse tuleb email, parool, ettevõtte nimi ja ettevõtte reg nr. Need salvestatakse andmebaasi.""")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK"),
-            @ApiResponse(responseCode = "", description = "",
+            @ApiResponse(responseCode = "403", description = "Kasutaja email on juba olemas",
                     content = @Content(schema = @Schema(implementation = ApiError.class)))})
 
     public void addUserAndCompany(@RequestBody CompanyRequest companyRequest) {
