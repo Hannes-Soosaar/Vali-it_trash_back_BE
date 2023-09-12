@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
-import trash_back.domain.Image;
+import trash_back.domain.product.image.Image;
 import trash_back.domain.company.Company;
 
 @Getter
@@ -14,6 +14,7 @@ import trash_back.domain.company.Company;
 @Table(name = "product")
 public class Product {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 

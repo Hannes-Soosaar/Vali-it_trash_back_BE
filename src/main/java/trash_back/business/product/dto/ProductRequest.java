@@ -1,6 +1,7 @@
-package trash_back.business.product;
+package trash_back.business.product.dto;
 
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,13 +15,20 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductProfile implements Serializable {
-    private Integer productId;
+public class ProductRequest implements Serializable {
+
     @NotNull
+    private Integer companyId;
+
+//muutis käsitsi byte[] -> String
+    private String imageData;
     private String productName;
+
     @NotNull
-    private String productUpc;
+    @Size(max = 14)
+    private String upc;
+    @Size(max = 255)
     private String productInfo;
     @NotNull
-    private String productStatus;
+    private String status;
 }
