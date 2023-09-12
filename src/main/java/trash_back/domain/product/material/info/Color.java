@@ -1,4 +1,4 @@
-package trash_back.domain;
+package trash_back.domain.product.material.info;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -9,22 +9,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "material")
-public class Material {
+@Table(name = "color")
+public class Color {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
-
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "category_id", nullable = false)
-    private Category category;
-
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "bin_id", nullable = false)
-    private Bin bin;
 
     @Size(max = 255)
     @NotNull
