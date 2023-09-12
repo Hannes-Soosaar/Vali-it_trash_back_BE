@@ -9,6 +9,10 @@ import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 import trash_back.business.product.dto.ProductProfile;
 import trash_back.business.product.dto.ProductRequest;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import trash_back.infrastructure.error.ApiError;
 
 import java.util.List;

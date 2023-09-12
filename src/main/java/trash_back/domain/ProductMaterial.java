@@ -12,6 +12,7 @@ import trash_back.domain.product.Product;
 @Table(name = "product_material")
 public class ProductMaterial {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
