@@ -1,4 +1,4 @@
-package trash_back.business.company;
+package trash_back.business.company.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

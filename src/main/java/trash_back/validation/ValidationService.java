@@ -17,4 +17,16 @@ public class ValidationService {
 // TODO: 07.09.2023 tee errori enumid error koodist 
 
     }
+
+    public static void validateEmailIsAvailable(boolean userExists) {
+        if (userExists) {
+            throw new BusinessException("Selline email on juba kasutusel", 222);
+        }
+    }
+
+    public static void validateCompanyNameIsAvailable(boolean companyNameExists) {
+        if (companyNameExists) {
+            throw new BusinessException("Sellise nimega ettevõte on juba olemas", 333);
+        }
+    }
 }

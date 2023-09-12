@@ -50,27 +50,26 @@ INSERT INTO material(id, category_id, bin_id, name) VALUES (DEFAULT, 5, 5, 'biol
 
 --Insert data into the 'image' table
 INSERT INTO image (id, data) VALUES (DEFAULT, E'\\x89504E470D0A1A0A');
+INSERT INTO image (id, data) VALUES (DEFAULT, E'\\x89504E470D0A1A0A');
 
 INSERT INTO "user"(id, role_id, email, password, status) VALUES (DEFAULT, 2, 'tairi', '123', 'A');
 INSERT INTO "user"(id, role_id, email, password, status) VALUES (DEFAULT, 1, 'admin ', '123', 'A');
 
 --Insert data into the 'company' table
 INSERT INTO company (id, user_id, name, registrationcode) VALUES (DEFAULT, 1, 'Valio Eesti AS', 10261303);
-INSERT INTO company (id, user_id, name, registrationcode) VALUES (DEFAULT, 1, 'Get stuff Co.', 10261302);
-INSERT INTO company (id, user_id, name, registrationcode) VALUES (DEFAULT, 1, 'Trash llc', 10261301);
 
 --Insert data into the 'product' table EI TÖÖTA
 INSERT INTO product (id, company_id, image_id, name, upc, info, status) VALUES (DEFAULT, 1, 1, 'Alma hapukoor 10% 250g', '133456789012', 'pese ja viska', 'A' );
-INSERT INTO product (id, company_id, image_id, name, upc, info, status) VALUES (DEFAULT, 2, 1, 'Alma hapukoor 20% ' ||
-                                                                                               '250g', '133456789012', 'pese ja viska', 'A' );
-INSERT INTO product (id, company_id, image_id, name, upc, info, status) VALUES (DEFAULT, 3, 1, 'Alma hapukoor 30% ' ||
-                                                                                               '250g', '133456789012', 'pese ja viska', 'A' );
+INSERT INTO product (id, company_id, image_id, name, upc, info, status) VALUES (DEFAULT, 1, 2, 'Alma Piim 2,5%, 0,5 l', '13fewfwefwe', 'loputa ja viska', 'A' );
 
 
 --Insert data into the 'product_material' table
 INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 1, 1);
 INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 1, 14);
 INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 1, 7);
+INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 2, 5);
+INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 2, 6);
+INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 2, 7);
 
 
 
