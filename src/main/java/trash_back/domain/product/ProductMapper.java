@@ -19,6 +19,7 @@ public interface ProductMapper {
 
     @Mapping(source = "productInfo", target = "info")
     @Mapping(source = "productName", target = "name")
+// all but the image data is mapped to a Product object
     Product toProduct(ProductRequest productRequest);
 
 

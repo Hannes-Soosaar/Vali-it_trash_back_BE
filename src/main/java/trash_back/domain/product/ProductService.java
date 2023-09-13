@@ -20,13 +20,14 @@ public class ProductService {
         return productRepository.findProductsBy(companyId);
 
     }
-
+// todo need to add Company to the Product.
     public void saveProduct(Product product) {
         productRepository.save(product);
     }
 
 
     public Company getCompanyBy(Integer companyId) {
+
         return companyRepository.getReferenceById(companyId);
     }
 }
