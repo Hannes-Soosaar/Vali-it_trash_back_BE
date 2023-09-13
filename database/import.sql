@@ -108,7 +108,7 @@ INSERT INTO product (id, company_id, image_id, name, upc, info, status)
 VALUES (DEFAULT, 1, 1, 'PVC 3', 'PVC 3', 'pese ja viska', 'A' );
 
 INSERT INTO product (id, company_id, image_id, name, upc, info, status)
-VALUES (DEFAULT, 1, 1, 'Alma hapukoor 10% 250g', '133456789012', 'pese ja viska', 'A' );
+VALUES (DEFAULT, 2, 1, 'Alma hapukoor 10% 250g', '133456789012', 'pese ja viska', 'A' );
 
 --Insert data into the 'product_material' table
 INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 1, 1);
