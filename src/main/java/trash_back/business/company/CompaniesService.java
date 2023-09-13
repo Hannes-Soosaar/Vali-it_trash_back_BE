@@ -9,6 +9,7 @@ import trash_back.business.company.dto.CompanyRequest;
 import trash_back.domain.company.Company;
 import trash_back.domain.company.CompanyMapper;
 import trash_back.domain.company.CompanyService;
+import trash_back.domain.company.UpdateProfileInfoRequest;
 import trash_back.domain.role.Role;
 import trash_back.domain.role.RoleService;
 import trash_back.domain.user.*;
@@ -86,5 +87,12 @@ public class CompaniesService {
         User user = userService.getUserBy(request.getUserId());
         user.setPassword(request.getNewPassword());
         userService.saveUser(user);
+    }
+
+    public void updateProfileInfo(UpdateProfileInfoRequest updateProfileInfoRequest) {
+        Company company = companyService.getCompanyBy(updateProfileInfoRequest.getUserId());
+        company.setName(updateProfileInfoRequest.getName());
+        company.setRegistrationcode(updateProfileInfoRequest.getRegistrationcode());
+        companyService.saveCompany(company);
     }
 }
