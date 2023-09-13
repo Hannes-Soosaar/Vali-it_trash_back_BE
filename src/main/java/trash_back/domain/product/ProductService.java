@@ -12,7 +12,7 @@ public class ProductService {
 
     @Resource
     private ProductRepository productRepository;
-    
+
     @Resource
     private CompanyRepository companyRepository;
 
@@ -24,7 +24,6 @@ public class ProductService {
     public void saveProduct(Product product) {
         productRepository.save(product);
     }
-
 
     public Company getCompanyBy(Integer companyId) {
         return companyRepository.getReferenceById(companyId);

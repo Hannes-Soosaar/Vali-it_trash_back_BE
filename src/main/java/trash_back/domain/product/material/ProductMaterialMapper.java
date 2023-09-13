@@ -1,6 +1,7 @@
 package trash_back.domain.product.material;
 
 import org.mapstruct.*;
+import trash_back.business.product.dto.material.MaterialInfo;
 import trash_back.business.product.dto.material.ProductMaterialDto;
 
 import java.util.List;
@@ -16,5 +17,13 @@ public interface ProductMaterialMapper {
     ProductMaterialDto toProductMaterialDto(ProductMaterial productMaterial);
 
     List<ProductMaterialDto> toProductMaterialDtos(List<ProductMaterial> toProductMaterial);
+
+    @Mapping(source = "material.category.name", target = "materialCategoryName")
+    @Mapping(source = "material.name", target = "materialName")
+    @Mapping(source = "material.id", target = "materialId")
+    MaterialInfo toMaterialInfo(ProductMaterial productMaterial);
+
+    List<MaterialInfo> toMaterialInfos(List<ProductMaterial> productMaterials);
+
 
 }
