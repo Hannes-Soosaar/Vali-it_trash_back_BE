@@ -12,7 +12,7 @@ public class ProductService {
 
     @Resource
     private ProductRepository productRepository;
-    
+
     @Resource
     private CompanyRepository companyRepository;
 

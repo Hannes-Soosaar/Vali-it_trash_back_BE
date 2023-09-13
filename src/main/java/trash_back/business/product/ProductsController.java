@@ -30,7 +30,6 @@ public class ProductsController {
             @ApiResponse(responseCode = "200", description = "OK"),
             @ApiResponse(responseCode = "404", description = "Ei leitud ühtegi toodet",
                     content = @Content(schema = @Schema(implementation = ApiError.class)))})
-
     public List<ProductProfile> getProductProfile(@RequestParam Integer companyId) {
         List<ProductProfile> productProfiles = productsService.getProductProfile(companyId);
         return productProfiles;

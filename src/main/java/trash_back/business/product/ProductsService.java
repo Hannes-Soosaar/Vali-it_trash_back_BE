@@ -20,43 +20,28 @@ public class ProductsService {
 
     @Resource
     private ProductService productService;
-
-
     @Resource
     private ProductMapper productMapper;
-
     @Resource
     private ImageService imageService;
 
-
-
     public List<ProductProfile> getProductProfile(Integer companyId) {
         List<Product> products = productService.findProductProfileBy(companyId);
-        List<ProductProfile> productProfiles = productMapper.toProductProfiles(products);
-        return productProfiles;
-
-
+        return productMapper.toProductProfiles(products);
     }
-
-
-
     //Transactional - It ensures that the entire operation is atomic, and if any part of it fails,
     // the entire transaction is rolled back.
     @Transactional
     public void addProductProfile(ProductRequest productRequest) {
-
         //klassi nime järgi toProduct
         Product product = productMapper.toProduct(productRequest);
         String imageData = productRequest.getImageData();
-
 
         if(productRequest.getImageData() != null && !productRequest.getImageData().isEmpty()){
             Image image = ImageConverter.imageDataToImage(imageData);
             imageService.saveImage(image);
             product.setImage(image);
-
         }
-
         productService.saveProduct(product);
     }
 
