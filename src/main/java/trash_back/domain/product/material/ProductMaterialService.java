@@ -11,8 +11,8 @@ public class ProductMaterialService {
     @Resource
     private ProductMaterialRepository productMaterialRepository;
 
-    public List<ProductMaterial> findMaterialBy(Integer productId) {
-    return productMaterialRepository.getProductMaterial(productId);
-
+    public List<ProductMaterial> findMaterialsBy(Integer productId) {
+        return productMaterialRepository.findProductMaterialBy(productId);
     }
+
 }

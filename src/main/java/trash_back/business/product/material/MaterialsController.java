@@ -13,16 +13,16 @@ public class MaterialsController {
 
 
     // All request from materials and down.
-@Resource
+    @Resource
     private ProductMaterialsService productMaterialsService;
 
-@GetMapping("/productmaterials")
+    @GetMapping("/product-materials")
 
 // get is used as there can not be a product without a material
-    public List<ProductMaterialDto> getProductMaterialsList(@RequestParam Integer productId){
-    return productMaterialsService.getProductMaterials(productId);
+    public List<ProductMaterialDto> getProductMaterials(@RequestParam Integer productId) {
+        return productMaterialsService.getProductMaterials(productId);
 
-}
+    }
 
 
 }

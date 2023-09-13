@@ -21,11 +21,9 @@ public class ProductMaterialsService {
     @Resource
     private ProductMaterialService productMaterialService;
 
-    public List<ProductMaterialDto> getProductMaterials(Integer productId){
-       List<ProductMaterial> productMaterial  = productMaterialService.findMaterialBy(productId);
-        return productMaterialMapper.toProductMaterialDto(productMaterial);
-
-
+    public List<ProductMaterialDto> getProductMaterials(Integer productId) {
+        List<ProductMaterial> productMaterials = productMaterialService.findMaterialsBy(productId);
+        return productMaterialMapper.toProductMaterialDtos(productMaterials);
     }
 
 
