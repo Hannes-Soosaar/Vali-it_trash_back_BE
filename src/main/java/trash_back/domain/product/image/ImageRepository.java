@@ -1,4 +1,4 @@
-package trash_back.domain;
+package trash_back.domain.product.image;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import trash_back.domain.product.image.Image;

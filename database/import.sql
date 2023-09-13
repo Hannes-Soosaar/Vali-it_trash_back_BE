@@ -56,20 +56,75 @@ INSERT INTO "user"(id, role_id, email, password, status) VALUES (DEFAULT, 2, 'ta
 INSERT INTO "user"(id, role_id, email, password, status) VALUES (DEFAULT, 1, 'admin ', '123', 'A');
 
 --Insert data into the 'company' table
+INSERT INTO company (id, user_id, name, registrationcode) VALUES (DEFAULT, 1, 'EU DIRECTIVE', 20000001);
 INSERT INTO company (id, user_id, name, registrationcode) VALUES (DEFAULT, 1, 'Valio Eesti AS', 10261303);
+INSERT INTO company (id, user_id, name, registrationcode) VALUES (DEFAULT, 1, 'Lipton Llc.', 30261303);
 
---Insert data into the 'product' table EI TÖÖTA
-INSERT INTO product (id, company_id, image_id, name, upc, info, status) VALUES (DEFAULT, 1, 1, 'Alma hapukoor 10% 250g', '133456789012', 'pese ja viska', 'A' );
-INSERT INTO product (id, company_id, image_id, name, upc, info, status) VALUES (DEFAULT, 1, 2, 'Alma Piim 2,5%, 0,5 l', '13fewfwefwe', 'loputa ja viska', 'A' );
+--Insert data into the 'product' table
 
+INSERT INTO product (id, company_id, image_id, name, upc, info, status)
+VALUES (DEFAULT, 1, 1, 'ALU', 'ALU', 'pese ja viska', 'A' );
+
+INSERT INTO product (id, company_id, image_id, name, upc, info, status)
+VALUES (DEFAULT, 1, 1, 'biolagunev', 'biolagunev', 'pese ja viska', 'A' );
+
+INSERT INTO product (id, company_id, image_id, name, upc, info, status)
+VALUES (DEFAULT, 1, 1, 'FE', 'FE', 'pese ja viska', 'A' );
+
+INSERT INTO product (id, company_id, image_id, name, upc, info, status)
+VALUES (DEFAULT, 1, 1, 'GL-70', 'GL-70', 'pese ja viska', 'A' );
+
+INSERT INTO product (id, company_id, image_id, name, upc, info, status)
+VALUES (DEFAULT, 1, 1, 'GL-71', 'GL-71', 'pese ja viska', 'A' );
+
+INSERT INTO product (id, company_id, image_id, name, upc, info, status)
+VALUES (DEFAULT, 1, 1, 'GL-72', 'GL-72', 'pese ja viska', 'A' );
+
+INSERT INTO product (id, company_id, image_id, name, upc, info, status)
+VALUES (DEFAULT, 1, 1, 'HDPE 2', 'HDPE 2', 'pese ja viska', 'A' );
+
+INSERT INTO product (id, company_id, image_id, name, upc, info, status)
+VALUES (DEFAULT, 1, 1, 'LDPE 4', 'LDPE 4', 'pese ja viska', 'A' );
+
+INSERT INTO product (id, company_id, image_id, name, upc, info, status)
+VALUES (DEFAULT, 1, 1, 'PAP-20', 'PAP-20', 'pese ja viska', 'A' );
+
+INSERT INTO product (id, company_id, image_id, name, upc, info, status)
+VALUES (DEFAULT, 1, 1, 'PAP-21', 'PAP-21', 'pese ja viska', 'A' );
+
+INSERT INTO product (id, company_id, image_id, name, upc, info, status)
+VALUES (DEFAULT, 1, 1, 'PAP-22', 'PAP-22', 'pese ja viska', 'A' );
+
+INSERT INTO product (id, company_id, image_id, name, upc, info, status)
+VALUES (DEFAULT, 1, 1, 'PET 1', 'PET 1', 'pese ja viska', 'A' );
+
+INSERT INTO product (id, company_id, image_id, name, upc, info, status)
+VALUES (DEFAULT, 1, 1, 'PP 5', 'PP 5', 'pese ja viska', 'A' );
+
+INSERT INTO product (id, company_id, image_id, name, upc, info, status)
+VALUES (DEFAULT, 1, 1, 'PS 6', 'PS 6', 'pese ja viska', 'A' );
+
+INSERT INTO product (id, company_id, image_id, name, upc, info, status)
+VALUES (DEFAULT, 1, 1, 'PVC 3', 'PVC 3', 'pese ja viska', 'A' );
+
+INSERT INTO product (id, company_id, image_id, name, upc, info, status)
+VALUES (DEFAULT, 1, 1, 'Alma hapukoor 10% 250g', '133456789012', 'pese ja viska', 'A' );
 
 --Insert data into the 'product_material' table
 INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 1, 1);
-INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 1, 14);
-INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 1, 7);
-INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 2, 5);
-INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 2, 6);
-INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 2, 7);
+INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 2, 2);
+INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 3, 3);
+INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 4, 4);
+INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 5, 5);
+INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 6, 6);
+INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 7, 7);
+INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 8, 8);
+INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 9, 9);
+INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 10, 10);
+INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 11, 11);
+INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 12, 12);
+INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 13, 13);
+INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 14, 14);
 
 
 

@@ -1,16 +1,17 @@
-package trash_back.domain;
+package trash_back.domain.product.material;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import trash_back.domain.product.material.properties.Material;
+import trash_back.domain.product.Product;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "material")
-public class Material {
+@Table(name = "product_material")
+public class ProductMaterial {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -18,17 +19,12 @@ public class Material {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "category_id", nullable = false)
-    private Category category;
+    @JoinColumn(name = "product_id", nullable = false)
+    private Product product;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "bin_id", nullable = false)
-    private Bin bin;
-
-    @Size(max = 255)
-    @NotNull
-    @Column(name = "name", nullable = false)
-    private String name;
+    @JoinColumn(name = "material_id", nullable = false)
+    private Material material;
 
 }
