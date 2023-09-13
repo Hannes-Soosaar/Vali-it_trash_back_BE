@@ -11,9 +11,7 @@ import trash_back.domain.company.CompanyMapper;
 import trash_back.domain.company.CompanyService;
 import trash_back.domain.role.Role;
 import trash_back.domain.role.RoleService;
-import trash_back.domain.user.User;
-import trash_back.domain.user.UserMapper;
-import trash_back.domain.user.UserService;
+import trash_back.domain.user.*;
 
 @Service
 public class CompaniesService {
@@ -33,6 +31,11 @@ public class CompaniesService {
 
     @Resource
     private UserMapper userMapper;
+    private final UserRepository userRepository;
+
+    public CompaniesService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     public CompanyInfo getCompanyInfo(Integer userId) {
         Company company = companyService.getCompanyBy(userId);
@@ -76,5 +79,12 @@ public class CompaniesService {
 
         // finito
 
+    }
+
+    public void updatePassword(UpdatePasswordRequest request) {
+        userService.validatePasswordChangeAllowed(request.getUserId(), request.getOldPassword());
+        User user = userService.getUserBy(request.getUserId());
+        user.setPassword(request.getNewPassword());
+        userService.saveUser(user);
     }
 }

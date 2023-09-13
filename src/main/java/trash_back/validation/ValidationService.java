@@ -29,4 +29,10 @@ public class ValidationService {
             throw new BusinessException("Sellise nimega ettevõte on juba olemas", 333);
         }
     }
+
+    public static void validatePasswordChangeAllowed(boolean passwordChangeAllowed) {
+        if (!passwordChangeAllowed) {
+            throw new BusinessException("Sisestatud vana parool ei ole õige", 444);
+        }
+    }
 }

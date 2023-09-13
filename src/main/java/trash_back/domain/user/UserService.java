@@ -13,8 +13,6 @@ public class UserService {
     private UserRepository userRepository;
 
 
-
-
     public User findActiveUserBy(String email, String password) {
 
 
@@ -31,11 +29,27 @@ public class UserService {
 
     public void validateEmailIsAvailable(String email) {
 
-        boolean userExists = userRepository.userExistsByEmail(email);
+        boolean userExists = userRepository.userExistsBy(email);
 
         ValidationService.validateEmailIsAvailable(userExists);
     }
 
+    public User getUserBy(Integer userId) {
+        return userRepository.getReferenceById(userId);
+    }
+
+    public void validatePasswordChangeAllowed(Integer userId, String oldPassword) {
+        boolean passwordChangeAllowed = userRepository.userExistsBy(userId, oldPassword);
+
+        ValidationService.validatePasswordChangeAllowed(passwordChangeAllowed);
+
+    }
+
+
+//    public User getPassword(Integer userId) {
+//        User password = userRepository.getReferenceById(userId);
+//        return password;
+//    }
 
 
 }
