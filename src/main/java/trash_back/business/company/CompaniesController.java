@@ -31,7 +31,6 @@ public class CompaniesController {
         CompanyInfo companyInfo = companiesService.getCompanyInfo(userId);
         return companyInfo;
     }
-
     @PostMapping
     @Operation(summary = "Uue aktiivse kasutaja registreerime koos ettevõttega",
             description = "Sisse tuleb email, parool, ettevõtte nimi ja ettevõtte reg nr. Need salvestatakse andmebaasi.")
@@ -44,16 +43,13 @@ public class CompaniesController {
 
         companiesService.addUserAndCompany(companyRequest);
     }
-
-//    @PutMapping("/user")
-//
-//
-//    public void updatePassword(@RequestParam Integer userId, String oldPassword, String newPassword) {
-//        companiesService.updatePassword(userId, oldPassword, newPassword);
-//    }
-
-
     @PatchMapping("/password")
+    @Operation(summary = "Kasutaja parooli muutmine",
+            description = "Sisse tuleb userId, vana parool ja uus parool.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK"),
+            @ApiResponse(responseCode = "403", description = "Sisestatud vana parool ei ole õige",
+                    content = @Content(schema = @Schema(implementation = ApiError.class)))})
 
     public void updatePassword(@RequestBody UpdatePasswordRequest updatePasswordRequest) {
         companiesService.updatePassword(updatePasswordRequest);
