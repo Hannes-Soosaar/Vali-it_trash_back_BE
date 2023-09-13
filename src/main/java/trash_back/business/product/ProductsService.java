@@ -21,6 +21,7 @@ public class ProductsService {
     @Resource
     private ProductService productService;
 
+
     @Resource
     private ProductMapper productMapper;
 
@@ -44,31 +45,20 @@ public class ProductsService {
     @Transactional
     public void addProductProfile(ProductRequest productRequest) {
 
+        //klassi nime järgi toProduct
+        Product product = productMapper.toProduct(productRequest);
         String imageData = productRequest.getImageData();
 
-    //klassi nime järgi toProduct
-//        if (imageData.isEmpty()) {
-//            Image image = ImageConverter.imageDataToImage(imageData);
-//        }
-        // otsite ülesse company objekti kasutades companyId'd (läbi service->repository)
 
-        Company company = productService.getCompanyBy(productRequest.getCompanyId());
-        Product product = productMapper.toProduct(productRequest);
-        product.setCompany(company);
-
-        if (hasImage(imageData)) {
+        if(productRequest.getImageData() != null && !productRequest.getImageData().isEmpty()){
             Image image = ImageConverter.imageDataToImage(imageData);
             imageService.saveImage(image);
             product.setImage(image);
 
         }
 
-//        @Mapping(source = "imageData", target = "image")
-//        @Mapping(source = "companyId", target = "company")
         productService.saveProduct(product);
     }
 
-    private boolean hasImage(String imageData) {
-        return imageData != null && !imageData.isEmpty();
-    }
+
 }

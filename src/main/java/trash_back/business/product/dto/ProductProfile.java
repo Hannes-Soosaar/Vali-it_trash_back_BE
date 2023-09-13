@@ -14,10 +14,9 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProductProfile implements Serializable {
-    private Integer id;
-    private Integer imageId;
+    private Integer productId;
     private String imageData;
-    private String companyName;
+    private String productName;
     private String upc;
     private String productInfo;
     private String status;

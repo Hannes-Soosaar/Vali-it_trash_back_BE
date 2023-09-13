@@ -10,12 +10,12 @@ import java.util.List;
 public interface ProductMapper {
 
 
-    @Mapping(source = "id", target = "id")
-    @Mapping(source = "company.name", target = "companyName")
+    @Mapping(source = "id", target = "productId")
+    @Mapping(source = "name", target = "productName")
     @Mapping(source = "upc", target = "upc")
     @Mapping(source = "info", target = "productInfo")
     @Mapping(source = "status", target = "status")
-    @Mapping(source = "image.id", target = "imageId")
+
 //    @Mapping(source = "image.data", target = "imageData")
     ProductProfile toProductProfile(Product product);
 

@@ -22,6 +22,8 @@ public class ProductRequest implements Serializable {
 
 //muutis käsitsi byte[] -> String
     private String imageData;
+
+    @NotNull
     private String productName;
 
     @NotNull
