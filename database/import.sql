@@ -52,7 +52,7 @@ INSERT INTO material(id, category_id, bin_id, name) VALUES (DEFAULT, 5, 5, 'biol
 INSERT INTO image (id, data) VALUES (DEFAULT, E'\\x89504E470D0A1A0A');
 INSERT INTO image (id, data) VALUES (DEFAULT, E'\\x89504E470D0A1A0A');
 
-INSERT INTO "user"(id, role_id, email, password, status) VALUES (DEFAULT, 1, 'admin ', '123', 'A');
+INSERT INTO "user"(id, role_id, email, password, status) VALUES (DEFAULT, 1, 'admin', '123', 'A');
 INSERT INTO "user"(id, role_id, email, password, status) VALUES (DEFAULT, 2, 'tairi', '123', 'A');
 INSERT INTO "user"(id, role_id, email, password, status) VALUES (DEFAULT, 2, 'map', '123', 'A');
 
