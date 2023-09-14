@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import trash_back.domain.product.ProductBasicProfile;
 import trash_back.domain.product.ProductService;
 import trash_back.infrastructure.error.ApiError;
 
@@ -28,8 +29,8 @@ public class ProductsController {
     private ProductService productService;
 
     @GetMapping("/products")
-    @Operation(summary = "tagastab toote profiili ja vastava tooted materjalid",
-            description = "companyId järgi saab kätte tooteprofiili; juurde lisatud materjali id, nimi ja kategooria nimi")
+    @Operation(summary = "tagastab tooteprofiilid ja iga tooted materjalid",
+            description = "companyId järgi saab kätte tooteprofiili(d); juurde lisatud materjali id, nimi ja kategooria nimi")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK"),
             @ApiResponse(responseCode = "404", description = "Ei leitud ühtegi toodet",
@@ -50,6 +51,12 @@ public class ProductsController {
     public void deleteProductProfile(@RequestParam Integer productId) {
         productsService.deleteProductProfile(productId);
 
+    }
+
+    @PutMapping("/products")
+    @Operation(summary = "Toote muutmine", description = "productId abil muudab product tabelis andmeid")
+    public void updateProductProfile(@RequestParam Integer productId, @RequestBody ProductBasicProfile productRequest){
+        productsService.updateProductProfile(productId, productRequest);
     }
 
 

@@ -17,6 +17,7 @@ public interface ProductMapper {
     @Mapping(source = "info", target = "productInfo")
     @Mapping(source = "status", target = "status")
     ProductProfile toProductProfile(Product product);
+
     List<ProductProfile> toProductProfiles(List<Product> products);
 
     @Mapping(source = "productInfo", target = "info")
@@ -31,7 +32,9 @@ public interface ProductMapper {
     ProductMaterial toEntity(MaterialInfo categoryNameDto);
 
 
-    @InheritConfiguration(name = "toEntity")
+
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    ProductMaterial partialUpdate(MaterialInfo materialInfo, @MappingTarget ProductMaterial productMaterial);
+    @Mapping(source = "productName", target = "name")
+    @Mapping(source = "productInfo", target = "info")
+    Product partialUpdate(ProductBasicProfile productBasicProfile, @MappingTarget Product product);
 }

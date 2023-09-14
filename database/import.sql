@@ -51,6 +51,8 @@ INSERT INTO material(id, category_id, bin_id, name) VALUES (DEFAULT, 5, 5, 'biol
 --Insert data into the 'image' table
 INSERT INTO image (id, data) VALUES (DEFAULT, E'\\x89504E470D0A1A0A');
 INSERT INTO image (id, data) VALUES (DEFAULT, E'\\x89504E470D0A1A0A');
+INSERT INTO image (id, data) VALUES (DEFAULT, E'\\x89504E470D0A1A0A');
+INSERT INTO image (id, data) VALUES (DEFAULT, E'\\x89504E470D0A1A0A');
 
 INSERT INTO "user"(id, role_id, email, password, status) VALUES (DEFAULT, 1, 'admin ', '123', 'A');
 INSERT INTO "user"(id, role_id, email, password, status) VALUES (DEFAULT, 2, 'tairi', '123', 'A');
@@ -113,10 +115,13 @@ INSERT INTO product (id, company_id, image_id, name, upc, info, status)
 VALUES (DEFAULT, 2, 1, 'Hapukoor 10% 250g', '133456789012', 'pese ja viska', 'A' );
 
 INSERT INTO product (id, company_id, image_id, name, upc, info, status)
-VALUES (DEFAULT, 2, 1, 'Täispiim 3,8-4,2%', '4740125120219', 'voldi, sulge kork ja viska', 'A' );
+VALUES (DEFAULT, 2, 2, 'Täispiim 3,8-4,2%', '4740125120219', 'voldi, sulge kork ja viska', 'A' );
 
 INSERT INTO product (id, company_id, image_id, name, upc, info, status)
-VALUES (DEFAULT, 2, 1, 'Või 82% 200g', '4740553699837', 'ei ole taaskasutatav', 'A' );
+VALUES (DEFAULT, 2, 3, 'Metsmaasika kohupiimakreem, 150 g', '4740125631371', 'pese ja viska', 'A' );
+
+INSERT INTO product (id, company_id, image_id, name, upc, info, status)
+VALUES (DEFAULT, 2, 4, 'Murakamoosiga kodujuust, 200 g', '4740125633023', 'pese ja viska', 'A' );
 
 --Insert data into the 'product_material' table
 INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 1, 1);
@@ -133,6 +138,15 @@ INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 11,
 INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 12, 12);
 INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 13, 13);
 INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 14, 14);
+INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 15, 15);
+INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 16, 15);
+INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 17, 1);
+INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 17, 9);
+INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 17, 12);
+INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 18, 13);
+INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 18, 1);
+INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 19, 1);
+INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 19, 13);
 
 
 
