@@ -3,6 +3,9 @@ package trash_back.domain.product;
 import org.mapstruct.*;
 import trash_back.business.product.dto.ProductProfile;
 import trash_back.business.product.dto.ProductRequest;
+import trash_back.business.search.dto.ProductSearchResultByUpc;
+import trash_back.domain.product.image.Image;
+import trash_back.util.ImageConverter;
 
 import java.util.List;
 
@@ -22,5 +25,19 @@ public interface ProductMapper {
 // all but the image data is mapped to a Product object
     Product toProduct(ProductRequest productRequest);
 
+
+    @Mapping(source = "name",target = "name")
+    @Mapping(source = "company.name",target = "companyName")
+
+    //todo there is an issue mapping the data object. Conversion is needed somewhere.
+
+    @Mapping(source = "image",target = "imageData", qualifiedByName ="imageToImageData")
+    @Mapping(source = "info",target = "info")
+
+    ProductSearchResultByUpc toProductSearchResult(Product product);
+
+
+    @Named("imageToImageData")
+    static String imageToImageData(Image image){ return ImageConverter.imageToImageData(image);}
 
 }

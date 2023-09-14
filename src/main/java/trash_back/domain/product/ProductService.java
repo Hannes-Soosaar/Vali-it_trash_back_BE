@@ -4,6 +4,7 @@ import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import trash_back.domain.company.Company;
 import trash_back.domain.company.CompanyRepository;
+import trash_back.domain.product.image.ImageRepository;
 
 import java.util.List;
 
@@ -15,6 +16,11 @@ public class ProductService {
 
     @Resource
     private CompanyRepository companyRepository;
+    private final ImageRepository imageRepository;
+
+    public ProductService(ImageRepository imageRepository) {
+        this.imageRepository = imageRepository;
+    }
 
     public List<Product> findProductProfileBy(Integer companyId) {
         return productRepository.findProductsBy(companyId);
@@ -27,7 +33,13 @@ public class ProductService {
 
 
     public Company getCompanyBy(Integer companyId) {
-
         return companyRepository.getReferenceById(companyId);
+    }
+
+    public Product findProductBy(Integer productId) {
+        return productRepository.findProductBy(productId);
+
+
+
     }
 }

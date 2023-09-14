@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
+import trash_back.business.product.dto.ImageRequest;
 import trash_back.business.product.dto.ProductProfile;
 import trash_back.business.product.dto.ProductRequest;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,12 +19,13 @@ import trash_back.infrastructure.error.ApiError;
 import java.util.List;
 
 @RestController
+@RequestMapping("/products")
 public class ProductsController {
 
     @Resource
     private ProductsService productsService;
 
-    @GetMapping("/products")
+    @GetMapping("")
     @Operation(summary = "tagastab toote profiili",
             description = "companyId järgi saab konkreets toote kätte")
     @ApiResponses(value = {
@@ -35,12 +37,17 @@ public class ProductsController {
         return productProfiles;
     }
 
-    @PostMapping("/products")
+    @PostMapping("")
     @Operation(summary = "Uue toote lisamine", description = "toote nimetus, upc, lisainfo, staatus, pilt")
     public void addProductProfile(@RequestBody ProductRequest productRequest) {
         productsService.addProductProfile(productRequest);
     }
 
 
+    @PutMapping("/product-image")
+    @Operation(summary = "tootle pildi muutmine", description = "toote id alusel laetakse ylsesse imageData")
+    public void modifyProductPicture(@RequestParam Integer productId, @RequestBody ImageRequest imageRequest) {
+        productsService.addImageToProduct( productId, imageRequest);
+    }
 
 }

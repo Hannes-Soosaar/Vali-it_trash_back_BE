@@ -3,10 +3,11 @@ package trash_back.business.product;
 import jakarta.annotation.Resource;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
+import trash_back.business.product.dto.ImageRequest;
 import trash_back.business.product.dto.ProductProfile;
 import trash_back.business.product.dto.ProductRequest;
+import trash_back.domain.company.CompanyService;
 import trash_back.domain.product.image.Image;
-import trash_back.domain.company.Company;
 import trash_back.domain.product.Product;
 import trash_back.domain.product.ProductMapper;
 import trash_back.domain.product.ProductService;
@@ -25,6 +26,9 @@ public class ProductsService {
     @Resource
     private ImageService imageService;
 
+    @Resource
+    private CompanyService companyService;
+
     public List<ProductProfile> getProductProfile(Integer companyId) {
         List<Product> products = productService.findProductProfileBy(companyId);
         return productMapper.toProductProfiles(products);
@@ -35,23 +39,32 @@ public class ProductsService {
     @Transactional
     public void addProductProfile(ProductRequest productRequest) {
 
-        // TODO: 13/09/2023 leidke companyId abil ylesse company objekt (via companyService -> companyRepository)
-
         // initialize local variables
         String imageData = productRequest.getImageData();
-        //klassi nime järgi toProduct
         Product product = productMapper.toProduct(productRequest);
-
-        // TODO: 13/09/2023 pange company producti k[lge
+        product.setCompany(companyService.getCompanyBy(productRequest.getUserId()));
 
        if(imageData != null && !imageData.isEmpty()){
-
-            Image image = ImageConverter.imageDataToImage(imageData);
-            imageService.saveImage(image);
-            product.setImage(image);
+           Image image = ImageConverter.imageDataToImage(imageData);
+           imageService.saveImage(image);
+           product.setImage(image);
         }
         productService.saveProduct(product);
     }
 
+//todo Changed from Post to Put.
+    public void addImageToProduct(Integer productId, ImageRequest imageRequest) {
+        String imageData = imageRequest.getImageData();
 
+        if(!imageData.isEmpty()){
+            Product product = productService.findProductBy(productId);
+
+            Image image = ImageConverter.imageDataToImage(imageData);
+            imageService.saveImage(image);
+            product.setImage(image);
+            productService.saveProduct(product);
+        } else{
+            return;
+        }
+    }
 }
