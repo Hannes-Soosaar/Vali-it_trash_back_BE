@@ -9,6 +9,7 @@ import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 import trash_back.business.company.dto.CompanyInfo;
 import trash_back.business.company.dto.CompanyRequest;
+import trash_back.domain.company.UpdateProfileInfoRequest;
 import trash_back.domain.user.UpdatePasswordRequest;
 import trash_back.infrastructure.error.ApiError;
 
@@ -31,6 +32,7 @@ public class CompaniesController {
         CompanyInfo companyInfo = companiesService.getCompanyInfo(userId);
         return companyInfo;
     }
+
     @PostMapping
     @Operation(summary = "Uue aktiivse kasutaja registreerime koos ettevõttega",
             description = "Sisse tuleb email, parool, ettevõtte nimi ja ettevõtte reg nr. Need salvestatakse andmebaasi.")
@@ -43,6 +45,7 @@ public class CompaniesController {
 
         companiesService.addUserAndCompany(companyRequest);
     }
+
     @PatchMapping("/password")
     @Operation(summary = "Kasutaja parooli muutmine",
             description = "Sisse tuleb userId, vana parool ja uus parool.")
@@ -54,4 +57,19 @@ public class CompaniesController {
     public void updatePassword(@RequestBody UpdatePasswordRequest updatePasswordRequest) {
         companiesService.updatePassword(updatePasswordRequest);
     }
+
+    @PatchMapping("/profileInfo")
+    @Operation(summary = "Ettevõtte nime ja ettevõtte registrinumbri muutmine",
+            description = "Sisse tuleb userId, uus ettevõtte nimi ja uus ettevõtte registrinumber")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK"),
+            @ApiResponse(responseCode = "403", description = "",
+                    content = @Content(schema = @Schema(implementation = ApiError.class)))})
+
+    public void updateProfileInfo(@RequestBody UpdateProfileInfoRequest updateProfileInfoRequest) {
+        companiesService.updateProfileInfo(updateProfileInfoRequest);
+
+    }
+
+
 }
