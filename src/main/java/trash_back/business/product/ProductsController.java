@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import trash_back.domain.product.ProductService;
 import trash_back.infrastructure.error.ApiError;
 
 import java.util.List;
@@ -22,6 +23,9 @@ public class ProductsController {
 
     @Resource
     private ProductsService productsService;
+
+    @Resource
+    private ProductService productService;
 
     @GetMapping("/products")
     @Operation(summary = "tagastab toote profiili",
