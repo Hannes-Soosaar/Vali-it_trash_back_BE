@@ -45,6 +45,14 @@ public class ProductsController {
         productsService.addProductProfile(productRequest);
     }
 
+    @DeleteMapping("/products")
+    @Operation(summary = "Toote kustutamine", description = "muudab toote staatuse D ehk mitteaktiivseks. Ei kustuta andmebaasist! ")
+    public void deleteProductProfile(@RequestParam Integer productId) {
+        productsService.deleteProductProfile(productId);
+
+    }
+
+
 
 
 }

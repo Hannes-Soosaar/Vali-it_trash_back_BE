@@ -3,12 +3,11 @@ package trash_back.business.product;
 import jakarta.annotation.Resource;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
+import trash_back.business.login.Status;
 import trash_back.business.product.dto.ProductProfile;
 import trash_back.business.product.dto.ProductRequest;
 import trash_back.business.product.dto.material.MaterialInfo;
-import trash_back.business.product.material.ProductMaterialsService;
 import trash_back.domain.product.image.Image;
-import trash_back.domain.company.Company;
 import trash_back.domain.product.Product;
 import trash_back.domain.product.ProductMapper;
 import trash_back.domain.product.ProductService;
@@ -85,4 +84,9 @@ public class ProductsService {
     }
 
 
+    public void deleteProductProfile(Integer productId) {
+        Product product = productService.getProductProfileBy(productId);
+        product.setStatus(Status.DELETED.getLetter());
+        productService.saveProduct(product);
+    }
 }

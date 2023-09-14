@@ -16,6 +16,8 @@ public class ProductService {
     @Resource
     private CompanyRepository companyRepository;
 
+
+
     public List<Product> findProductProfileBy(Integer companyId) {
         return productRepository.findProductsBy(companyId);
 
@@ -28,5 +30,11 @@ public class ProductService {
     public Company getCompanyBy(Integer companyId) {
 
         return companyRepository.getReferenceById(companyId);
+    }
+
+    public Product getProductProfileBy(Integer productId) {
+
+        return productRepository.getReferenceById(productId);
+
     }
 }
