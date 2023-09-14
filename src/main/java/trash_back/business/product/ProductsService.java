@@ -68,7 +68,7 @@ public class ProductsService {
         String imageData = productRequest.getImageData();
         //klassi nime järgi toProduct
         Product product = productMapper.toProduct(productRequest);
-        String imageData = productRequest.getImageData();
+        //String imageData = productRequest.getImageData();
 
         // TODO: 13/09/2023 pange company producti k[lge
 
