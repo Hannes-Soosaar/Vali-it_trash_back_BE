@@ -1,10 +1,16 @@
 package trash_back.business.search;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import trash_back.business.product.dto.material.ProductMaterialDto;
+import trash_back.infrastructure.error.ApiError;
 
 import java.util.List;
 
@@ -17,6 +23,12 @@ public class SearchController {
 
 
     @GetMapping("/search-result")
+    @Operation(summary = "Toote otsimine UPC järgi",
+            description = "Tagastab materjali nime, katergooria nime ja prügikastide info")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK"),
+            @ApiResponse(responseCode = "403", description = "message: Sellist UPC-d ei ole olemas. errorCode: 111",
+                    content = @Content(schema = @Schema(implementation = ApiError.class)))})
     public List<ProductMaterialDto> productRecyclingProfile(@RequestParam String upc){
             return searchService.getProductProfileBy(upc);
     }

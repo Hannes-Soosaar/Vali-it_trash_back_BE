@@ -67,8 +67,6 @@ public class CompaniesService {
         // nüüd saad useri ära salvestada (userService --> userRepository)
         userService.saveUser(user);
 
-        //
-
 
         // TODO: 11.09.2023 companyMapperi abil tekitad uue company objekti. Dtost mapid ära nii palju andmeid kui saad
         Company company = companyMapper.toCompany(companyRequest);

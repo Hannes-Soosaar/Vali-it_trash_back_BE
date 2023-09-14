@@ -28,8 +28,8 @@ public class ProductsController {
     private ProductService productService;
 
     @GetMapping("/products")
-    @Operation(summary = "tagastab toote profiili",
-            description = "companyId järgi saab konkreets toote kätte")
+    @Operation(summary = "tagastab toote profiili ja vastava tooted materjalid",
+            description = "companyId järgi saab kätte tooteprofiili; juurde lisatud materjali id, nimi ja kategooria nimi")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK"),
             @ApiResponse(responseCode = "404", description = "Ei leitud ühtegi toodet",
