@@ -33,6 +33,7 @@ public class ProductsService {
     @Resource
     private ProductMapper productMapper;
 
+    @Resource
     private ProductMaterialService productMaterialService;
 
     @Resource
