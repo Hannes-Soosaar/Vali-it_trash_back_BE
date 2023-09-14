@@ -14,13 +14,8 @@ public class UserService {
 
 
     public User findActiveUserBy(String email, String password) {
-
-
         Optional<User> optionalUser = userRepository.findActiveUserBy(email, password, Status.ACTIVE.getLetter());
-        User user = ValidationService.getValidUser(optionalUser);
-        return user;
-
-
+        return ValidationService.getValidUser(optionalUser);
     }
 
     public void saveUser(User user) {
@@ -28,9 +23,7 @@ public class UserService {
     }
 
     public void validateEmailIsAvailable(String email) {
-
         boolean userExists = userRepository.userExistsBy(email);
-
         ValidationService.validateEmailIsAvailable(userExists);
     }
 
@@ -40,16 +33,6 @@ public class UserService {
 
     public void validatePasswordChangeAllowed(Integer userId, String oldPassword) {
         boolean passwordChangeAllowed = userRepository.userExistsBy(userId, oldPassword);
-
         ValidationService.validatePasswordChangeAllowed(passwordChangeAllowed);
-
     }
-
-
-//    public User getPassword(Integer userId) {
-//        User password = userRepository.getReferenceById(userId);
-//        return password;
-//    }
-
-
 }

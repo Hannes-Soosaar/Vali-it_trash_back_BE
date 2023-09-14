@@ -29,8 +29,6 @@ public class LoginController {
                     content = @Content(schema = @Schema(implementation = ApiError.class)))})
 
     public LoginResponse login(@RequestParam String email, @RequestParam String password) {
-
-
         LoginResponse loginResponse = loginService.login(email, password);
         return loginResponse;
     }
