@@ -22,5 +22,11 @@ public class SearchController {
     }
 
 
+    @GetMapping("/search")
+
+    public void searchProductAndRecyclingInfo(@RequestParam String upc) {
+        searchService.searchProductAndRecyclingInfo(upc);
+    }
+
 
 }

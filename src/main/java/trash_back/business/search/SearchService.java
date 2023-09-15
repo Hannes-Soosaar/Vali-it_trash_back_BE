@@ -22,4 +22,7 @@ public class SearchService {
         return productMaterialsService.getProductMaterials(productId);
     }
 
+    public void searchProductAndRecyclingInfo(String upc) {
+
+    }
 }
