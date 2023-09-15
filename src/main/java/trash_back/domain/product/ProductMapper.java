@@ -3,6 +3,9 @@ package trash_back.domain.product;
 import org.mapstruct.*;
 import trash_back.business.product.dto.ProductProfile;
 import trash_back.business.product.dto.ProductRequest;
+import trash_back.business.search.dto.ProductSearchResultByUpc;
+import trash_back.domain.product.image.Image;
+import trash_back.util.ImageConverter;
 import trash_back.business.product.dto.material.MaterialInfo;
 import trash_back.domain.product.material.ProductMaterial;
 
@@ -16,7 +19,9 @@ public interface ProductMapper {
     @Mapping(source = "upc", target = "upc")
     @Mapping(source = "info", target = "productInfo")
     @Mapping(source = "status", target = "status")
+    @Mapping(source = "image", target = "imageString", qualifiedByName = "imageToImageData")
     ProductProfile toProductProfile(Product product);
+
     List<ProductProfile> toProductProfiles(List<Product> products);
 
     @Mapping(source = "productInfo", target = "info")
@@ -24,14 +29,26 @@ public interface ProductMapper {
 // all but the image data is mapped to a Product object
     Product toProduct(ProductRequest productRequest);
 
-
     @Mapping(source = "materialName", target = "material.name")
     @Mapping(source = "materialCategoryName", target = "material.category.name")
     @Mapping(source = "materialId", target = "material.id")
     ProductMaterial toEntity(MaterialInfo categoryNameDto);
 
-
-    @InheritConfiguration(name = "toEntity")
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    ProductMaterial partialUpdate(MaterialInfo materialInfo, @MappingTarget ProductMaterial productMaterial);
+    @Mapping(source = "productName", target = "name")
+    @Mapping(source = "productInfo", target = "info")
+    Product partialUpdate(ProductBasicProfile productBasicProfile, @MappingTarget Product product);
+
+    @Mapping(source = "name", target = "name")
+    @Mapping(source = "company.name", target = "companyName")
+    //todo there is an issue mapping the data object. Conversion is needed somewhere.
+    @Mapping(source = "image", target = "imageData", qualifiedByName = "imageToImageData")
+    @Mapping(source = "info", target = "info")
+    ProductSearchResultByUpc toProductSearchResult(Product product);
+
+    @Named("imageToImageData")
+    static String imageToImageData(Image image) {
+        return ImageConverter.imageToImageData(image);
+    }
+
 }

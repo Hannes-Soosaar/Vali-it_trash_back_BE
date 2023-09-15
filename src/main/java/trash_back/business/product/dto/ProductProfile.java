@@ -17,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 public class ProductProfile implements Serializable {
     private Integer productId;
-    private String imageData;
+    private String imageString;
     private String productName;
     private String upc;
     private String productInfo;

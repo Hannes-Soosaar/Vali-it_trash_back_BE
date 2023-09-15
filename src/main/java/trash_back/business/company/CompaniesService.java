@@ -16,7 +16,8 @@ import trash_back.domain.user.*;
 
 @Service
 public class CompaniesService {
-
+    @Resource
+    private final UserRepository userRepository;
     @Resource
     private CompanyService companyService;
 
@@ -32,7 +33,6 @@ public class CompaniesService {
 
     @Resource
     private UserMapper userMapper;
-    private final UserRepository userRepository;
 
     public CompaniesService(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -40,42 +40,20 @@ public class CompaniesService {
 
     public CompanyInfo getCompanyInfo(Integer userId) {
         Company company = companyService.getCompanyBy(userId);
-        CompanyInfo companyInfo = companyMapper.toCompanyInfo(company);
-        return companyInfo;
-
-
+        return companyMapper.toCompanyInfo(company);
     }
-
 
     @Transactional
     public void addUserAndCompany(CompanyRequest companyRequest) {
-        // TODO: 11.09.2023 kontrolli kõigepealt , kas emaili nimi on hõivatud, kui jah viska viga.
-
         userService.validateEmailIsAvailable(companyRequest.getEmail());
-
-        // TODO: 11.09.2023 kontrolli  , kas ettevõtte nimi on hõivatud, kui jah viska viga.
-
         companyService.validateCompanyNameIsAvailable(companyRequest.getCompanyName());
-
-        // TODO: 11.09.2023 Otsi ylesse roll "user".  RoleService -> RoleRepository (useri roleid on 2)
         Role role = roleService.getRoleUser();
-        // user mapperi abil tekitad uue user objekti, saad ära täita väljad email, password ja status
         User user = userMapper.toUser(companyRequest);
-
-        // nüüd saad user objektile panna külge setteri abil rolli
         user.setRole(role);
-        // nüüd saad useri ära salvestada (userService --> userRepository)
         userService.saveUser(user);
-        //
-        // TODO: 11.09.2023 companyMapperi abil tekitad uue company objekti. Dtost mapid ära nii palju andmeid kui saad
         Company company = companyMapper.toCompany(companyRequest);
-        // nüüd saad company objektile panna külge user objekti(foreign key)
         company.setUser(user);
-        // nüüd saad company objekti ära salvestada andmebaasi(companyService -> companyRepository)
         companyService.saveCompany(company);
-
-        // finito
-
     }
 
     public void updatePassword(UpdatePasswordRequest request) {
@@ -91,4 +69,5 @@ public class CompaniesService {
         company.setRegistrationcode(updateProfileInfoRequest.getRegistrationcode());
         companyService.saveCompany(company);
     }
+
 }

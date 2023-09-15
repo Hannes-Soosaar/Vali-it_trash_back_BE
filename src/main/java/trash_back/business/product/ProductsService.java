@@ -2,11 +2,15 @@ package trash_back.business.product;
 
 import jakarta.annotation.Resource;
 import jakarta.transaction.Transactional;
+import org.mapstruct.Mapping;
 import org.springframework.stereotype.Service;
+import trash_back.business.product.dto.ImageRequest;
+import trash_back.business.login.Status;
 import trash_back.business.product.dto.ProductProfile;
 import trash_back.business.product.dto.ProductRequest;
+import trash_back.domain.company.CompanyService;
 import trash_back.business.product.dto.material.MaterialInfo;
-import trash_back.business.product.material.ProductMaterialsService;
+import trash_back.domain.product.ProductBasicProfile;
 import trash_back.domain.product.image.Image;
 import trash_back.domain.company.Company;
 import trash_back.domain.product.Product;
@@ -27,11 +31,8 @@ public class ProductsService {
     private ProductService productService;
 
     @Resource
-    private ImageService imageService;
-
-
-    @Resource
     private ProductMapper productMapper;
+
 
     @Resource
     private ProductMaterialService productMaterialService;
@@ -39,8 +40,14 @@ public class ProductsService {
     @Resource
     private ProductMaterialMapper productMaterialMapper;
 
+    @Resource
+    private ImageService imageService;
 
-    public List<ProductProfile> getProductProfile(Integer companyId) {
+
+    @Resource
+    private CompanyService companyService;
+
+    public List<ProductProfile> getProductProfiles(Integer companyId) {
         List<Product> products = productService.findProductProfileBy(companyId);
         List<ProductProfile> productProfiles = productMapper.toProductProfiles(products);
 
@@ -69,11 +76,37 @@ public class ProductsService {
         String imageData = productRequest.getImageData();
         //klassi nime järgi toProduct
         Product product = productMapper.toProduct(productRequest);
-        //String imageData = productRequest.getImageData();
+        product.setCompany(companyService.getCompanyBy(productRequest.getUserId()));
 
-        // TODO: 13/09/2023 pange company producti k[lge
+        if (imageData != null && !imageData.isEmpty()) {
+            Image image = ImageConverter.imageDataToImage(imageData);
+            imageService.saveImage(image);
+            product.setImage(image);
+        }
 
-       if(imageData != null && !imageData.isEmpty()){
+        productService.saveProduct(product);
+    }
+
+
+    public void deleteProductProfile(Integer productId) {
+        Product product = productService.getProductProfileBy(productId);
+        product.setStatus(Status.DELETED.getLetter());
+        productService.saveProduct(product);
+
+    }
+
+    public void updateProductProfile(Integer productId, ProductBasicProfile productRequest) {
+        Product product = productService.getProductProfileBy(productId);
+        productMapper.partialUpdate(productRequest, product);
+        productService.saveProduct(product);
+    }
+
+    //todo Changed from Post to Put.
+    public void modifyProductPicture(Integer productId, ImageRequest imageRequest) {
+        String imageData = imageRequest.getImageData();
+
+        if (!imageData.isEmpty()) {
+            Product product = productService.findProductBy(productId);
 
             Image image = ImageConverter.imageDataToImage(imageData);
             imageService.saveImage(image);
