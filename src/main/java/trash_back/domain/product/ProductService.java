@@ -26,7 +26,6 @@ public class ProductService {
         return productRepository.findProductsBy(companyId);
 
     }
-
     // todo need to add Company to the Product.
     public void saveProduct(Product product) {
         productRepository.save(product);
@@ -37,7 +36,6 @@ public class ProductService {
     }
 
     public Product getProductProfileBy(Integer productId) {
-
         return productRepository.getReferenceById(productId);
     }
 

@@ -35,8 +35,7 @@ public class ProductsController {
             @ApiResponse(responseCode = "404", description = "Ei leitud ühtegi toodet",
                     content = @Content(schema = @Schema(implementation = ApiError.class)))})
     public List<ProductProfile> getProductProfiles(@RequestParam Integer companyId) {
-        List<ProductProfile> productProfiles = productsService.getProductProfiles(companyId);
-        return productProfiles;
+        return productsService.getProductProfiles(companyId);
     }
 
     @PostMapping("")
