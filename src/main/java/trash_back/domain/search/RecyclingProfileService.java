@@ -13,12 +13,12 @@ public class RecyclingProfileService {
     private ProductRepository productRepository;
 
 //todo make sure to ignore case.
-    public Integer findProductIdBy(String upc) {
-        Product product = productRepository.findProductIdBy(upc); // will return only one single product
-        return product.getId();
+//    public Integer findProductIdBy(String upc) {
+//        Product product = productRepository.findProductBy(upc); // will return only one single product
+//        return product.getId();
     }
-    public Product getProductDetailsBy(String upc) {
-        return productRepository.findProductIdBy(upc);
-    }
-
-}
+//    public Product getProductDetailsBy(String upc) {
+//        return productRepository.findProductBy(upc);
+//    }
+//
+//}

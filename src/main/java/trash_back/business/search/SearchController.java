@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import trash_back.business.product.dto.material.ProductMaterialDto;
+import trash_back.business.search.dto.SearchResultUpc;
 import trash_back.infrastructure.error.ApiError;
 import trash_back.business.search.dto.ProductSearchResultByUpc;
 
@@ -24,21 +25,22 @@ public class SearchController {
     @Resource
     private SearchService searchService;
 
-    @GetMapping("material")
-    public List<ProductMaterialDto> productRecyclingProfile(@RequestParam String upc) {
-        return searchService.getProductProfileBy(upc);
+//    @GetMapping("material")
+//    public List<ProductMaterialDto> productRecyclingProfile(@RequestParam String upc) {
+//        return searchService.getProductProfileBy(upc);
+//    }
+
+
+    @GetMapping("")
+
+    public SearchResultUpc searchProductAndRecyclingInfo(@RequestParam String upc) {
+       return searchService.searchProductAndRecyclingInfo(upc);
+
     }
 
-
-    @GetMapping("/search")
-
-    public void searchProductAndRecyclingInfo(@RequestParam String upc) {
-        searchService.searchProductAndRecyclingInfo(upc);
-    }
-
-    @GetMapping("product")
-    public ProductSearchResultByUpc productCommercialProfile(@RequestParam String upc) {
-        return searchService.getProductInfoBy(upc);
-    }
+//    @GetMapping("product")
+//    public ProductSearchResultByUpc productCommercialProfile(@RequestParam String upc) {
+//        return searchService.getProductInfoBy(upc);
+//    }
 
 }

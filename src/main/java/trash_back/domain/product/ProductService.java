@@ -2,11 +2,10 @@ package trash_back.domain.product;
 
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
-import trash_back.domain.company.Company;
-import trash_back.domain.company.CompanyRepository;
-import trash_back.domain.product.image.ImageRepository;
+import trash_back.validation.ValidationService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -14,13 +13,6 @@ public class ProductService {
     @Resource
     private ProductRepository productRepository;
 
-    @Resource
-    private CompanyRepository companyRepository;
-    private final ImageRepository imageRepository;
-
-    public ProductService(ImageRepository imageRepository) {
-        this.imageRepository = imageRepository;
-    }
 
     public List<Product> findProductProfileBy(Integer companyId) {
         return productRepository.findProductsBy(companyId);
@@ -31,16 +23,17 @@ public class ProductService {
         productRepository.save(product);
     }
 
-    public Company getCompanyBy(Integer companyId) {
-        return companyRepository.getReferenceById(companyId);
-    }
 
     public Product getProductProfileBy(Integer productId) {
         return productRepository.getReferenceById(productId);
     }
 
-    public Product findProductBy(Integer productId) {
+    public Product getValidProductBy(Integer productId) {
         return productRepository.findProductBy(productId);
     }
 
+    public Product getValidProductBy(String upc) {
+        Optional<Product> optionalProduct = productRepository.findProductBy(upc);
+        return ValidationService.getValidProduct(optionalProduct);
+    }
 }

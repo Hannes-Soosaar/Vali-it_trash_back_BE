@@ -1,5 +1,6 @@
 package trash_back.validation;
 
+import trash_back.domain.product.Product;
 import trash_back.domain.user.User;
 import trash_back.infrastructure.exception.BusinessException;
 
@@ -34,5 +35,12 @@ public class ValidationService {
         if (!passwordChangeAllowed) {
             throw new BusinessException("Sisestatud vana parool ei ole õige", 444);
         }
+    }
+
+    public static Product getValidProduct(Optional<Product> optionalProduct) {
+        if (optionalProduct.isEmpty()) {
+            throw new BusinessException("Toode puudub andmebaasist", 555);
+        }
+        return optionalProduct.get();
     }
 }

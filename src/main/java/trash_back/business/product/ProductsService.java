@@ -2,7 +2,6 @@ package trash_back.business.product;
 
 import jakarta.annotation.Resource;
 import jakarta.transaction.Transactional;
-import org.mapstruct.Mapping;
 import org.springframework.stereotype.Service;
 import trash_back.business.product.dto.ImageRequest;
 import trash_back.business.login.Status;
@@ -12,7 +11,6 @@ import trash_back.domain.company.CompanyService;
 import trash_back.business.product.dto.material.MaterialInfo;
 import trash_back.domain.product.ProductBasicProfile;
 import trash_back.domain.product.image.Image;
-import trash_back.domain.company.Company;
 import trash_back.domain.product.Product;
 import trash_back.domain.product.ProductMapper;
 import trash_back.domain.product.ProductService;
@@ -104,17 +102,17 @@ public class ProductsService {
     //todo Changed from Post to Put.
     public void modifyProductPicture(Integer productId, ImageRequest imageRequest) {
         String imageData = imageRequest.getImageData();
+        Product product = productService.getValidProductBy(productId);
 
         if (!imageData.isEmpty()) {
-            Product product = productService.findProductBy(productId);
 
             Image image = ImageConverter.imageDataToImage(imageData);
             imageService.saveImage(image);
             product.setImage(image);
-            productService.saveProduct(product);
-        } else {
-            return;
+
         }
+
+        productService.saveProduct(product);
     }
 
 
