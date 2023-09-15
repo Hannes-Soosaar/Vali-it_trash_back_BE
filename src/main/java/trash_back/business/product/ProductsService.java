@@ -111,10 +111,10 @@ public class ProductsService {
             Image image = ImageConverter.imageDataToImage(imageData);
             imageService.saveImage(image);
             product.setImage(image);
-
+            productService.saveProduct(product);
+        } else {
+            return;
         }
-
-        productService.saveProduct(product);
     }
 
 
