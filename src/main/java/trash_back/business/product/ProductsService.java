@@ -29,7 +29,7 @@ public class ProductsService {
     @Resource
     private CompanyService companyService;
 
-    public List<ProductProfile> getProductProfile(Integer companyId) {
+    public List<ProductProfile> getProductProfiles(Integer companyId) {
         List<Product> products = productService.findProductProfileBy(companyId);
         return productMapper.toProductProfiles(products);
     }
@@ -53,7 +53,7 @@ public class ProductsService {
     }
 
 //todo Changed from Post to Put.
-    public void addImageToProduct(Integer productId, ImageRequest imageRequest) {
+    public void modifyProductPicture(Integer productId, ImageRequest imageRequest) {
         String imageData = imageRequest.getImageData();
 
         if(!imageData.isEmpty()){
