@@ -56,13 +56,14 @@ CREATE TABLE product (
                          company_id int  NOT NULL,
                          image_id int  NULL,
                          name varchar(255)  NOT NULL,
-                         upc varchar(14)  NOT NULL,
+                         upc varchar(18)  NOT NULL,
                          info varchar(255)  NOT NULL,
                          status char(1)  NOT NULL,
                          CONSTRAINT product_pk PRIMARY KEY (id)
 );
 
--- Table: product_material
+-- Table: product_materi
+-- al
 CREATE TABLE product_material (
                                   id serial  NOT NULL,
                                   product_id int  NOT NULL,
