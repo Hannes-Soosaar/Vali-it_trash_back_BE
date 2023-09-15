@@ -41,7 +41,6 @@ public interface ProductMapper {
 
     @Mapping(source = "name", target = "name")
     @Mapping(source = "company.name", target = "companyName")
-    //todo there is an issue mapping the data object. Conversion is needed somewhere.
     @Mapping(source = "image", target = "imageData", qualifiedByName = "imageToImageData")
     @Mapping(source = "info", target = "info")
     ProductSearchResultByUpc toProductSearchResult(Product product);

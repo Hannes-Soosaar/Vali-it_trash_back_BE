@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class TrashBackApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(TrashBackApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(TrashBackApplication.class, args);
+    }
 
 }

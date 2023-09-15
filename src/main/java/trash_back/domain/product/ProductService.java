@@ -24,13 +24,13 @@ public class ProductService {
 
     public List<Product> findProductProfileBy(Integer companyId) {
         return productRepository.findProductsBy(companyId);
-
     }
+
     // todo need to add Company to the Product.
     public void saveProduct(Product product) {
         productRepository.save(product);
     }
-
+    //todo why is this not used
     public Company getCompanyBy(Integer companyId) {
         return companyRepository.getReferenceById(companyId);
     }

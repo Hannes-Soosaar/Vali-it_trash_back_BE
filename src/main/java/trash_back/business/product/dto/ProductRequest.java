@@ -16,16 +16,12 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProductRequest implements Serializable {
-
     @NotNull
     private Integer companyId;
-
 //muutis käsitsi byte[] -> String
     private String imageData;
-
     @NotNull
     private String productName;
-
     @NotNull
     @Size(max = 14)
     private String upc;

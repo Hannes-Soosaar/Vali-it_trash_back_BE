@@ -20,8 +20,6 @@ public class CompanyService {
 
     public void validateCompanyNameIsAvailable(String companyName) {
         boolean companyNameExists = companyRepository.companyNameExistsByName(companyName);
-
         ValidationService.validateCompanyNameIsAvailable(companyNameExists);
-
     }
 }

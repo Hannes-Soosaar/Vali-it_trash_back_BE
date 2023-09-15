@@ -20,13 +20,10 @@ import java.io.Serializable;
 public class ProductSearchResultByUpc implements Serializable {
     @NotNull
     private String companyName;
-
     private String imageData;
-    
     @NotNull
     @Size(max = 255)
     private String name;
-    
     @NotNull
     @Size(max = 255)
     private String info;

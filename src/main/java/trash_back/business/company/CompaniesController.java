@@ -32,6 +32,7 @@ public class CompaniesController {
         CompanyInfo companyInfo = companiesService.getCompanyInfo(userId);
         return companyInfo;
     }
+
     @PostMapping
     @Operation(summary = "Uue aktiivse kasutaja registreerime koos ettevõttega",
             description = "Sisse tuleb email, parool, ettevõtte nimi ja ettevõtte reg nr. Need salvestatakse andmebaasi.")
@@ -44,6 +45,7 @@ public class CompaniesController {
 
         companiesService.addUserAndCompany(companyRequest);
     }
+
     @PatchMapping("/password")
     @Operation(summary = "Kasutaja parooli muutmine",
             description = "Sisse tuleb userId, vana parool ja uus parool.")
@@ -66,8 +68,6 @@ public class CompaniesController {
 
     public void updateProfileInfo(@RequestBody UpdateProfileInfoRequest updateProfileInfoRequest) {
         companiesService.updateProfileInfo(updateProfileInfoRequest);
-
     }
-
 
 }

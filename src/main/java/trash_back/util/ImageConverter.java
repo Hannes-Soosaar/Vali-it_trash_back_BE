@@ -1,7 +1,5 @@
 package trash_back.util;
 
-
-
 import trash_back.domain.product.image.Image;
 
 import java.nio.charset.StandardCharsets;
@@ -25,6 +23,5 @@ public class ImageConverter {
         }
         return new String(image.getData(), StandardCharsets.UTF_8);
     }
-
 
 }

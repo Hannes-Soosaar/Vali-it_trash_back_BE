@@ -16,9 +16,6 @@ import java.util.List;
 
 @RestController
 public class MaterialsController {
-
-
-    // All request from materials and down.
     @Resource
     private ProductMaterialsService productMaterialsService;
 
@@ -28,12 +25,8 @@ public class MaterialsController {
             @ApiResponse(responseCode = "200", description = "OK"),
             @ApiResponse(responseCode = "403", description = "Sellist toodet ei ole olemas",
                     content = @Content(schema = @Schema(implementation = ApiError.class)))})
-
-// get is used as there can not be a product without a material
     public List<ProductMaterialDto> getProductMaterials(@RequestParam Integer productId) {
         return productMaterialsService.getProductMaterials(productId);
-
     }
-
 
 }

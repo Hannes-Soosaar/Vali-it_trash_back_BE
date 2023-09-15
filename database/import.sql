@@ -1,152 +1,255 @@
+-- Insert data into the 'role' table -- OK
+INSERT INTO ROLE (NAME)
+VALUES ('Admin');
+INSERT INTO ROLE (NAME)
+VALUES ('User');
 
--- Insert data into the 'role' table
-INSERT INTO role (name) VALUES ('Admin');
-INSERT INTO role (name) VALUES ('User');
+--populate the 'company' table
 
---Insert data into the 'color' table
-INSERT INTO color(id, name) VALUES (DEFAULT, 'Kollane');
-INSERT INTO color(id, name) VALUES (DEFAULT, 'Must');
-INSERT INTO color(id, name) VALUES (DEFAULT, 'Sinine');
-INSERT INTO color(id, name) VALUES (DEFAULT, 'Roheline');
-INSERT INTO color(id, name) VALUES (DEFAULT, 'Pruun');
+INSERT INTO company (id, user_id, name, registrationcode) VALUES (DEFAULT, 2, 'Valio Eesti AS', 10261303);
+INSERT INTO company (id, user_id, name, registrationcode) VALUES (DEFAULT, 1, 'Orkla Eesti AS', 20000001);
+INSERT INTO company (id, user_id, name, registrationcode) VALUES (DEFAULT, 3, '(Lipton) UNILEVER EESTI AS', 30261303);
 
 
---Insert data into the 'category' table. KAS OLMET ON VAJA?
+--populate the 'color' table -- OK
+INSERT INTO COLOR(ID, NAME)
+VALUES (DEFAULT, 'Kollane');
+INSERT INTO COLOR(ID, NAME)
+VALUES (DEFAULT, 'Must');
+INSERT INTO COLOR(ID, NAME)
+VALUES (DEFAULT, 'Sinine');
+INSERT INTO COLOR(ID, NAME)
+VALUES (DEFAULT, 'Roheline');
+INSERT INTO COLOR(ID, NAME)
+VALUES (DEFAULT, 'Pruun');
 
-INSERT INTO category (id, name) VALUES (DEFAULT, 'Plast- ja metallpakend, joogikartong');
-INSERT INTO category (id, name) VALUES (DEFAULT, 'Olme');
-INSERT INTO category (id, name) VALUES (DEFAULT, 'Papp- ja paberpakend');
-INSERT INTO category (id, name) VALUES (DEFAULT, 'Klaaspakend');
-INSERT INTO category (id, name) VALUES (DEFAULT, 'Biojäätmed');
+--populate bin table
+INSERT INTO BIN (ID, COLOR_ID, NAME, REQUIREMENTS)
+VALUES (DEFAULT, 4, 'Klaaspakend',
+        'Loputa vajadusel kergelt, et ei määriks teisi pakendeid. Eemalda korgid ja kaaned, sildid võivad jääda.');
+INSERT INTO BIN (ID, COLOR_ID, NAME, REQUIREMENTS)
+VALUES (DEFAULT, 1, 'Plast- ja metallpakendi',
+        'Loputa vajadusel, et ei määriks teisi pakendeid. Jäta korgid ja kaaned peale');
+INSERT INTO BIN (ID, COLOR_ID, NAME, REQUIREMENTS)
+VALUES (DEFAULT, 2, 'Olmeprügi', 'Vaata, et ei viskaks sorteeritavat');
+INSERT INTO BIN (ID, COLOR_ID, NAME, REQUIREMENTS)
+VALUES (DEFAULT, 5, 'Biojäätmed',
+        'Biojäätmed pane konteinerisse lahtiselt, paberkotis või täielikult biolaguneva kotiga.');
+INSERT INTO BIN (ID, COLOR_ID, NAME, REQUIREMENTS)
+VALUES (DEFAULT, 3, 'Papp- ja paberpakendi ',
+        'Voldi suured papist pakendid kokku või rebi tükkideks. Materjal peab olema kuiv.');
 
---Insert data into the 'bin' table
 
-INSERT INTO bin (id, color_id, name, requirements) VALUES (DEFAULT, 1, 'Plast- ja metallpakendi konteiner', 'Loputa vajadusel, et ei määriks teisi pakendeid. Jäta korgid ja kaaned peale');
-INSERT INTO bin (id, color_id, name, requirements) VALUES (DEFAULT, 2, 'Olmeprügi konteiner', '');
-INSERT INTO bin (id, color_id, name, requirements) VALUES (DEFAULT, 3, 'Papp- ja paberpakendi konteiner', 'Voldi suured papist pakendid kokku või rebi tükkideks. Veendu, et materjal on kuiv.');
-INSERT INTO bin (id, color_id, name, requirements) VALUES (DEFAULT, 4, 'Klaaspakendi konteiner', 'Loputa vajadusel kergelt, et ei määriks teisi pakendeid. Eemalda korgid ja kaaned, sildid võivad jääda.');
-INSERT INTO bin (id, color_id, name, requirements) VALUES (DEFAULT, 5, 'Biojäätmete konteiner', 'Biojäätmed pane konteinerisse lahtiselt, paberkotis või täielikult biolaguneva ja komposteeruva kotiga.');
+--populate the  'category' table
+INSERT INTO CATEGORY (ID, NAME)
+VALUES (DEFAULT, 'Olme');
+INSERT INTO CATEGORY (ID, NAME)
+VALUES (DEFAULT, 'Biojäätmed');
+INSERT INTO CATEGORY (ID, NAME)
+VALUES (DEFAULT, 'Klaas');
+INSERT INTO CATEGORY (ID, NAME)
+VALUES (DEFAULT, 'Plast');
+INSERT INTO CATEGORY (ID, NAME)
+VALUES (DEFAULT, 'Papp');
+INSERT INTO CATEGORY (ID, NAME)
+VALUES (DEFAULT, 'Värviline klaas');
+INSERT INTO CATEGORY (ID, NAME)
+VALUES (DEFAULT, 'Metall');
+INSERT INTO CATEGORY (ID, NAME)
+VALUES (DEFAULT, 'Paber');
+INSERT INTO CATEGORY (ID, NAME)
+VALUES (DEFAULT, 'Vanapabre');
+INSERT INTO CATEGORY (ID, NAME)
+VALUES (DEFAULT, 'Aknaklaas');
+
+
+--Insert data into the 'product
+INSERT INTO PRODUCT (ID, COMPANY_ID, IMAGE_ID, NAME, UPC, INFO, STATUS)
+VALUES (DEFAULT, 2, 1, 'Hapukoor 20% kiles, ALMA, 500 g', '4740125410020', 'pese ja utiliseeri', 'A');
+INSERT INTO PRODUCT (ID, COMPANY_ID, IMAGE_ID, NAME, UPC, INFO, STATUS)
+VALUES (DEFAULT, 1, 2, 'Pidulik valik šokolaadikomme, KALEV, 435 g', '4740012028666',
+        'indidvuaalsed kommialused on oleme.', 'A');
+INSERT INTO PRODUCT (ID, COMPANY_ID, IMAGE_ID, NAME, UPC, INFO, STATUS)
+VALUES (DEFAULT, 3, 3, 'Must tee Yellow Label niidiga kotis', '8711200461646',
+        'Kasutatud teekottid visata olme prügisse', 'A');
+INSERT INTO PRODUCT (ID, COMPANY_ID, IMAGE_ID, NAME, UPC, INFO, STATUS)
+VALUES (DEFAULT, 1, 4, 'Barbarissimaitseline karamell, KALEV', '4740012600121', 'individuaalsed pakendid on olmeprügi',
+        'A');
+INSERT INTO PRODUCT (ID, COMPANY_ID, IMAGE_ID, NAME, UPC, INFO, STATUS)
+VALUES (DEFAULT, 2, 5, 'Koorejogurt Muah stracciatella', e'4740125535853
+', 'Sorteeri eraldi kaas, paber ümbris ja utiiliseeri eraldi. ', 'A');
+INSERT INTO PRODUCT (ID, COMPANY_ID, IMAGE_ID, NAME, UPC, INFO, STATUS)
+VALUES (DEFAULT, 2, 6, e'Jogurtijook ploomi-jäätisemaitseline, ALMA, 275 g
+', '4740125582772', 'pese ja utiliseri pudel koos krgiga', 'A');
+
 
 --Insert data into the 'material' table
-INSERT INTO material(id, category_id, bin_id, name) VALUES (DEFAULT, 1, 1, 'PET 1');
-INSERT INTO material(id, category_id, bin_id, name) VALUES (DEFAULT, 1, 1, 'HDPE 2');
-INSERT INTO material(id, category_id, bin_id, name) VALUES (DEFAULT, 1, 1, 'PVC 3');
-INSERT INTO material(id, category_id, bin_id, name) VALUES (DEFAULT, 1, 1, 'LDPE 4');
-INSERT INTO material(id, category_id, bin_id, name) VALUES (DEFAULT, 1, 1, 'PP 5');
-INSERT INTO material(id, category_id, bin_id, name) VALUES (DEFAULT, 1, 1, 'PS 6');
-INSERT INTO material(id, category_id, bin_id, name) VALUES (DEFAULT, 3, 3, 'PAP-20');
-INSERT INTO material(id, category_id, bin_id, name) VALUES (DEFAULT, 3, 3, 'PAP-21');
-INSERT INTO material(id, category_id, bin_id, name) VALUES (DEFAULT, 3, 3, 'PAP-22');
-INSERT INTO material(id, category_id, bin_id, name) VALUES (DEFAULT, 4, 4, 'GL-70');
-INSERT INTO material(id, category_id, bin_id, name) VALUES (DEFAULT, 4, 4, 'GL-71');
-INSERT INTO material(id, category_id, bin_id, name) VALUES (DEFAULT, 4, 4, 'GL-72');
-INSERT INTO material(id, category_id, bin_id, name) VALUES (DEFAULT, 1, 1, 'FE');
-INSERT INTO material(id, category_id, bin_id, name) VALUES (DEFAULT, 1, 1, 'ALU');
-INSERT INTO material(id, category_id, bin_id, name) VALUES (DEFAULT, 2, 2, 'materjal, mida pole võimalik taaskasutada');
-INSERT INTO material(id, category_id, bin_id, name) VALUES (DEFAULT, 5, 5, 'biolagunev');
-
-
+INSERT INTO MATERIAL(ID, CATEGORY_ID, BIN_ID, NAME)
+VALUES (DEFAULT, 1, 1, 'PET 1');
+INSERT INTO MATERIAL(ID, CATEGORY_ID, BIN_ID, NAME)
+VALUES (DEFAULT, 1, 1, 'HDPE 2');
+INSERT INTO MATERIAL(ID, CATEGORY_ID, BIN_ID, NAME)
+VALUES (DEFAULT, 1, 1, 'PVC 3');
+INSERT INTO MATERIAL(ID, CATEGORY_ID, BIN_ID, NAME)
+VALUES (DEFAULT, 1, 1, 'LDPE 4');
+INSERT INTO MATERIAL(ID, CATEGORY_ID, BIN_ID, NAME)
+VALUES (DEFAULT, 1, 1, 'PP 5');
+INSERT INTO MATERIAL(ID, CATEGORY_ID, BIN_ID, NAME)
+VALUES (DEFAULT, 1, 1, 'PS 6');
+INSERT INTO MATERIAL(ID, CATEGORY_ID, BIN_ID, NAME)
+VALUES (DEFAULT, 3, 3, 'PAP-20');
+INSERT INTO MATERIAL(ID, CATEGORY_ID, BIN_ID, NAME)
+VALUES (DEFAULT, 7, 3, 'PAP-21');
+INSERT INTO MATERIAL(ID, CATEGORY_ID, BIN_ID, NAME)
+VALUES (DEFAULT, 9, 3, 'PAP-22');
+INSERT INTO MATERIAL(ID, CATEGORY_ID, BIN_ID, NAME)
+VALUES (DEFAULT, 4, 4, 'GL-70');
+INSERT INTO MATERIAL(ID, CATEGORY_ID, BIN_ID, NAME)
+VALUES (DEFAULT, 8, 4, 'GL-71');
+INSERT INTO MATERIAL(ID, CATEGORY_ID, BIN_ID, NAME)
+VALUES (DEFAULT, 10, 4, 'GL-72');
+INSERT INTO MATERIAL(ID, CATEGORY_ID, BIN_ID, NAME)
+VALUES (DEFAULT, 6, 1, 'FE');
+INSERT INTO MATERIAL(ID, CATEGORY_ID, BIN_ID, NAME)
+VALUES (DEFAULT, 6, 1, 'ALU');
+INSERT INTO MATERIAL(ID, CATEGORY_ID, BIN_ID, NAME)
+VALUES (DEFAULT, 2, 2, 'mitte taaskasutatav');
+INSERT INTO MATERIAL(ID, CATEGORY_ID, BIN_ID, NAME)
+VALUES (DEFAULT, 5, 5, 'biolagunev');
 
 
 --Insert data into the 'image' table
-INSERT INTO image (id, data) VALUES (DEFAULT, E'\\x89504E470D0A1A0A');
-INSERT INTO image (id, data) VALUES (DEFAULT, E'\\x89504E470D0A1A0A');
-INSERT INTO image (id, data) VALUES (DEFAULT, E'\\x89504E470D0A1A0A');
-INSERT INTO image (id, data) VALUES (DEFAULT, E'\\x89504E470D0A1A0A');
+INSERT INTO IMAGE (ID, DATA)
+VALUES (DEFAULT, E'\\x89504E470D0A1A0A');
+INSERT INTO IMAGE (ID, DATA)
+VALUES (DEFAULT, E'\\x89504E470D0A1A0A');
+INSERT INTO IMAGE (ID, DATA)
+VALUES (DEFAULT, E'\\x89504E470D0A1A0A');
+INSERT INTO IMAGE (ID, DATA)
+VALUES (DEFAULT, E'\\x89504E470D0A1A0A');
 
-INSERT INTO "user"(id, role_id, email, password, status) VALUES (DEFAULT, 1, 'admin ', '123', 'A');
-INSERT INTO "user"(id, role_id, email, password, status) VALUES (DEFAULT, 2, 'tairi', '123', 'A');
-INSERT INTO "user"(id, role_id, email, password, status) VALUES (DEFAULT, 2, 'map', '123', 'A');
+INSERT INTO "user"(ID, ROLE_ID, EMAIL, PASSWORD, STATUS)
+VALUES (DEFAULT, 1, 'admin ', '123', 'A');
+INSERT INTO "user"(ID, ROLE_ID, EMAIL, PASSWORD, STATUS)
+VALUES (DEFAULT, 2, 'tairi', '123', 'A');
+INSERT INTO "user"(ID, ROLE_ID, EMAIL, PASSWORD, STATUS)
+VALUES (DEFAULT, 2, 'map', '123', 'A');
 
 
 --Insert data into the 'company' table
-INSERT INTO company (id, user_id, name, registrationcode) VALUES (DEFAULT, 1, 'EU DIRECTIVE', 20000001);
-INSERT INTO company (id, user_id, name, registrationcode) VALUES (DEFAULT, 2, 'Valio Eesti AS', 10261303);
-INSERT INTO company (id, user_id, name, registrationcode) VALUES (DEFAULT, 3, 'Lipton Llc.', 30261303);
+INSERT INTO COMPANY (ID, USER_ID, NAME, REGISTRATIONCODE)
+VALUES (DEFAULT, 1, 'EU DIRECTIVE', 20000001);
+INSERT INTO COMPANY (ID, USER_ID, NAME, REGISTRATIONCODE)
+VALUES (DEFAULT, 2, 'Valio Eesti AS', 10261303);
+INSERT INTO COMPANY (ID, USER_ID, NAME, REGISTRATIONCODE)
+VALUES (DEFAULT, 3, 'Lipton Llc.', 30261303);
 
 --Insert data into the 'product' table
 
-INSERT INTO product (id, company_id, image_id, name, upc, info, status)
-VALUES (DEFAULT, 1, 1, 'ALU', 'ALU', 'pese ja viska', 'A' );
+INSERT INTO PRODUCT (ID, COMPANY_ID, IMAGE_ID, NAME, UPC, INFO, STATUS)
+VALUES (DEFAULT, 1, 1, 'ALU', 'ALU', 'pese ja viska', 'A');
 
-INSERT INTO product (id, company_id, image_id, name, upc, info, status)
-VALUES (DEFAULT, 1, 1, 'biolagunev', 'biolagunev', 'pese ja viska', 'A' );
+INSERT INTO PRODUCT (ID, COMPANY_ID, IMAGE_ID, NAME, UPC, INFO, STATUS)
+VALUES (DEFAULT, 1, 1, 'biolagunev', 'biolagunev', 'pese ja viska', 'A');
 
-INSERT INTO product (id, company_id, image_id, name, upc, info, status)
-VALUES (DEFAULT, 1, 1, 'FE', 'FE', 'pese ja viska', 'A' );
+INSERT INTO PRODUCT (ID, COMPANY_ID, IMAGE_ID, NAME, UPC, INFO, STATUS)
+VALUES (DEFAULT, 1, 1, 'FE', 'FE', 'pese ja viska', 'A');
 
-INSERT INTO product (id, company_id, image_id, name, upc, info, status)
-VALUES (DEFAULT, 1, 1, 'GL-70', 'GL-70', 'pese ja viska', 'A' );
+INSERT INTO PRODUCT (ID, COMPANY_ID, IMAGE_ID, NAME, UPC, INFO, STATUS)
+VALUES (DEFAULT, 1, 1, 'GL-70', 'GL-70', 'pese ja viska', 'A');
 
-INSERT INTO product (id, company_id, image_id, name, upc, info, status)
-VALUES (DEFAULT, 1, 1, 'GL-71', 'GL-71', 'pese ja viska', 'A' );
+INSERT INTO PRODUCT (ID, COMPANY_ID, IMAGE_ID, NAME, UPC, INFO, STATUS)
+VALUES (DEFAULT, 1, 1, 'GL-71', 'GL-71', 'pese ja viska', 'A');
 
-INSERT INTO product (id, company_id, image_id, name, upc, info, status)
-VALUES (DEFAULT, 1, 1, 'GL-72', 'GL-72', 'pese ja viska', 'A' );
+INSERT INTO PRODUCT (ID, COMPANY_ID, IMAGE_ID, NAME, UPC, INFO, STATUS)
+VALUES (DEFAULT, 1, 1, 'GL-72', 'GL-72', 'pese ja viska', 'A');
 
-INSERT INTO product (id, company_id, image_id, name, upc, info, status)
-VALUES (DEFAULT, 1, 1, 'HDPE 2', 'HDPE 2', 'pese ja viska', 'A' );
+INSERT INTO PRODUCT (ID, COMPANY_ID, IMAGE_ID, NAME, UPC, INFO, STATUS)
+VALUES (DEFAULT, 1, 1, 'HDPE 2', 'HDPE 2', 'pese ja viska', 'A');
 
-INSERT INTO product (id, company_id, image_id, name, upc, info, status)
-VALUES (DEFAULT, 1, 1, 'LDPE 4', 'LDPE 4', 'pese ja viska', 'A' );
+INSERT INTO PRODUCT (ID, COMPANY_ID, IMAGE_ID, NAME, UPC, INFO, STATUS)
+VALUES (DEFAULT, 1, 1, 'LDPE 4', 'LDPE 4', 'pese ja viska', 'A');
 
-INSERT INTO product (id, company_id, image_id, name, upc, info, status)
-VALUES (DEFAULT, 1, 1, 'PAP-20', 'PAP-20', 'pese ja viska', 'A' );
+INSERT INTO PRODUCT (ID, COMPANY_ID, IMAGE_ID, NAME, UPC, INFO, STATUS)
+VALUES (DEFAULT, 1, 1, 'PAP-20', 'PAP-20', 'pese ja viska', 'A');
 
-INSERT INTO product (id, company_id, image_id, name, upc, info, status)
-VALUES (DEFAULT, 1, 1, 'PAP-21', 'PAP-21', 'pese ja viska', 'A' );
+INSERT INTO PRODUCT (ID, COMPANY_ID, IMAGE_ID, NAME, UPC, INFO, STATUS)
+VALUES (DEFAULT, 1, 1, 'PAP-21', 'PAP-21', 'pese ja viska', 'A');
 
-INSERT INTO product (id, company_id, image_id, name, upc, info, status)
-VALUES (DEFAULT, 1, 1, 'PAP-22', 'PAP-22', 'pese ja viska', 'A' );
+INSERT INTO PRODUCT (ID, COMPANY_ID, IMAGE_ID, NAME, UPC, INFO, STATUS)
+VALUES (DEFAULT, 1, 1, 'PAP-22', 'PAP-22', 'pese ja viska', 'A');
 
-INSERT INTO product (id, company_id, image_id, name, upc, info, status)
-VALUES (DEFAULT, 1, 1, 'PET 1', 'PET 1', 'pese ja viska', 'A' );
+INSERT INTO PRODUCT (ID, COMPANY_ID, IMAGE_ID, NAME, UPC, INFO, STATUS)
+VALUES (DEFAULT, 1, 1, 'PET 1', 'PET 1', 'pese ja viska', 'A');
 
-INSERT INTO product (id, company_id, image_id, name, upc, info, status)
-VALUES (DEFAULT, 1, 1, 'PP 5', 'PP 5', 'pese ja viska', 'A' );
+INSERT INTO PRODUCT (ID, COMPANY_ID, IMAGE_ID, NAME, UPC, INFO, STATUS)
+VALUES (DEFAULT, 1, 1, 'PP 5', 'PP 5', 'pese ja viska', 'A');
 
-INSERT INTO product (id, company_id, image_id, name, upc, info, status)
-VALUES (DEFAULT, 1, 1, 'PS 6', 'PS 6', 'pese ja viska', 'A' );
+INSERT INTO PRODUCT (ID, COMPANY_ID, IMAGE_ID, NAME, UPC, INFO, STATUS)
+VALUES (DEFAULT, 1, 1, 'PS 6', 'PS 6', 'pese ja viska', 'A');
 
-INSERT INTO product (id, company_id, image_id, name, upc, info, status)
-VALUES (DEFAULT, 1, 1, 'PVC 3', 'PVC 3', 'pese ja viska', 'A' );
+INSERT INTO PRODUCT (ID, COMPANY_ID, IMAGE_ID, NAME, UPC, INFO, STATUS)
+VALUES (DEFAULT, 1, 1, 'PVC 3', 'PVC 3', 'pese ja viska', 'A');
 
-INSERT INTO product (id, company_id, image_id, name, upc, info, status)
-VALUES (DEFAULT, 2, 1, 'Hapukoor 10% 250g', '133456789012', 'pese ja viska', 'A' );
+INSERT INTO PRODUCT (ID, COMPANY_ID, IMAGE_ID, NAME, UPC, INFO, STATUS)
+VALUES (DEFAULT, 2, 1, 'Hapukoor 10% 250g', '133456789012', 'pese ja viska', 'A');
 
-INSERT INTO product (id, company_id, image_id, name, upc, info, status)
-VALUES (DEFAULT, 2, 2, 'Täispiim 3,8-4,2%', '4740125120219', 'voldi, sulge kork ja viska', 'A' );
+INSERT INTO PRODUCT (ID, COMPANY_ID, IMAGE_ID, NAME, UPC, INFO, STATUS)
+VALUES (DEFAULT, 2, 2, 'Täispiim 3,8-4,2%', '4740125120219', 'voldi, sulge kork ja viska', 'A');
 
-INSERT INTO product (id, company_id, image_id, name, upc, info, status)
-VALUES (DEFAULT, 2, 3, 'Metsmaasika kohupiimakreem, 150 g', '4740125631371', 'pese ja viska', 'A' );
+INSERT INTO PRODUCT (ID, COMPANY_ID, IMAGE_ID, NAME, UPC, INFO, STATUS)
+VALUES (DEFAULT, 2, 3, 'Metsmaasika kohupiimakreem, 150 g', '4740125631371', 'pese ja viska', 'A');
 
-INSERT INTO product (id, company_id, image_id, name, upc, info, status)
-VALUES (DEFAULT, 2, 4, 'Murakamoosiga kodujuust, 200 g', '4740125633023', 'pese ja viska', 'A' );
+INSERT INTO PRODUCT (ID, COMPANY_ID, IMAGE_ID, NAME, UPC, INFO, STATUS)
+VALUES (DEFAULT, 2, 4, 'Murakamoosiga kodujuust, 200 g', '4740125633023', 'pese ja viska', 'A');
 
 --Insert data into the 'product_material' table
-INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 1, 1);
-INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 2, 2);
-INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 3, 3);
-INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 4, 4);
-INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 5, 5);
-INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 6, 6);
-INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 7, 7);
-INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 8, 8);
-INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 9, 9);
-INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 10, 10);
-INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 11, 11);
-INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 12, 12);
-INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 13, 13);
-INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 14, 14);
-INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 15, 15);
-INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 16, 15);
-INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 17, 1);
-INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 17, 9);
-INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 17, 12);
-INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 18, 13);
-INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 18, 1);
-INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 19, 1);
-INSERT INTO product_material (id, product_id, material_id)  VALUES (DEFAULT, 19, 13);
+INSERT INTO PRODUCT_MATERIAL (ID, PRODUCT_ID, MATERIAL_ID)
+VALUES (DEFAULT, 1, 1);
+INSERT INTO PRODUCT_MATERIAL (ID, PRODUCT_ID, MATERIAL_ID)
+VALUES (DEFAULT, 2, 2);
+INSERT INTO PRODUCT_MATERIAL (ID, PRODUCT_ID, MATERIAL_ID)
+VALUES (DEFAULT, 3, 3);
+INSERT INTO PRODUCT_MATERIAL (ID, PRODUCT_ID, MATERIAL_ID)
+VALUES (DEFAULT, 4, 4);
+INSERT INTO PRODUCT_MATERIAL (ID, PRODUCT_ID, MATERIAL_ID)
+VALUES (DEFAULT, 5, 5);
+INSERT INTO PRODUCT_MATERIAL (ID, PRODUCT_ID, MATERIAL_ID)
+VALUES (DEFAULT, 6, 6);
+INSERT INTO PRODUCT_MATERIAL (ID, PRODUCT_ID, MATERIAL_ID)
+VALUES (DEFAULT, 7, 7);
+INSERT INTO PRODUCT_MATERIAL (ID, PRODUCT_ID, MATERIAL_ID)
+VALUES (DEFAULT, 8, 8);
+INSERT INTO PRODUCT_MATERIAL (ID, PRODUCT_ID, MATERIAL_ID)
+VALUES (DEFAULT, 9, 9);
+INSERT INTO PRODUCT_MATERIAL (ID, PRODUCT_ID, MATERIAL_ID)
+VALUES (DEFAULT, 10, 10);
+INSERT INTO PRODUCT_MATERIAL (ID, PRODUCT_ID, MATERIAL_ID)
+VALUES (DEFAULT, 11, 11);
+INSERT INTO PRODUCT_MATERIAL (ID, PRODUCT_ID, MATERIAL_ID)
+VALUES (DEFAULT, 12, 12);
+INSERT INTO PRODUCT_MATERIAL (ID, PRODUCT_ID, MATERIAL_ID)
+VALUES (DEFAULT, 13, 13);
+INSERT INTO PRODUCT_MATERIAL (ID, PRODUCT_ID, MATERIAL_ID)
+VALUES (DEFAULT, 14, 14);
+INSERT INTO PRODUCT_MATERIAL (ID, PRODUCT_ID, MATERIAL_ID)
+VALUES (DEFAULT, 15, 15);
+INSERT INTO PRODUCT_MATERIAL (ID, PRODUCT_ID, MATERIAL_ID)
+VALUES (DEFAULT, 16, 15);
+INSERT INTO PRODUCT_MATERIAL (ID, PRODUCT_ID, MATERIAL_ID)
+VALUES (DEFAULT, 17, 1);
+INSERT INTO PRODUCT_MATERIAL (ID, PRODUCT_ID, MATERIAL_ID)
+VALUES (DEFAULT, 17, 9);
+INSERT INTO PRODUCT_MATERIAL (ID, PRODUCT_ID, MATERIAL_ID)
+VALUES (DEFAULT, 17, 12);
+INSERT INTO PRODUCT_MATERIAL (ID, PRODUCT_ID, MATERIAL_ID)
+VALUES (DEFAULT, 18, 13);
+INSERT INTO PRODUCT_MATERIAL (ID, PRODUCT_ID, MATERIAL_ID)
+VALUES (DEFAULT, 18, 1);
+INSERT INTO PRODUCT_MATERIAL (ID, PRODUCT_ID, MATERIAL_ID)
+VALUES (DEFAULT, 19, 1);
+INSERT INTO PRODUCT_MATERIAL (ID, PRODUCT_ID, MATERIAL_ID)
+VALUES (DEFAULT, 19, 13);
 
 
 

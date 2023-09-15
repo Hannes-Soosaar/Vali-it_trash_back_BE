@@ -12,19 +12,13 @@ import java.util.List;
 @Service
 public class ProductMaterialsService {
 
-
-    // gives access to the desired mapper
     @Resource
     private ProductMaterialMapper productMaterialMapper;
-
-    // gives access to the domain side Service.
     @Resource
     private ProductMaterialService productMaterialService;
-
     public List<ProductMaterialDto> getProductMaterials(Integer productId) {
         List<ProductMaterial> productMaterials = productMaterialService.findMaterialsBy(productId);
         return productMaterialMapper.toProductMaterialDtos(productMaterials);
     }
-
 
 }

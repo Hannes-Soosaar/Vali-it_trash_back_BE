@@ -2,7 +2,6 @@ package trash_back.business.product;
 
 import jakarta.annotation.Resource;
 import jakarta.transaction.Transactional;
-import org.mapstruct.Mapping;
 import org.springframework.stereotype.Service;
 import trash_back.business.product.dto.ImageRequest;
 import trash_back.business.login.Status;
@@ -12,7 +11,6 @@ import trash_back.domain.company.CompanyService;
 import trash_back.business.product.dto.material.MaterialInfo;
 import trash_back.domain.product.ProductBasicProfile;
 import trash_back.domain.product.image.Image;
-import trash_back.domain.company.Company;
 import trash_back.domain.product.Product;
 import trash_back.domain.product.ProductMapper;
 import trash_back.domain.product.ProductService;
@@ -26,21 +24,16 @@ import java.util.List;
 
 @Service
 public class ProductsService {
-
     @Resource
     private ProductService productService;
     @Resource
     private ProductMapper productMapper;
     @Resource
     private ProductMaterialService productMaterialService;
-
     @Resource
     private ProductMaterialMapper productMaterialMapper;
-
     @Resource
     private ImageService imageService;
-
-
     @Resource
     private CompanyService companyService;
 
@@ -53,12 +46,9 @@ public class ProductsService {
             List<MaterialInfo> materialInfos = productMaterialMapper.toMaterialInfos(materials);
             productProfile.setMaterials(materialInfos);
         }
-        //productMaterialsService.getProductMaterials()
         return productProfiles;
     }
 
-    //Transactional - It ensures that the entire operation is atomic, and if any part of it fails,
-    // the entire transaction is rolled back.
     @Transactional
     public void addProductProfile(ProductRequest productRequest) {
         String imageData = productRequest.getImageData();
@@ -70,7 +60,6 @@ public class ProductsService {
             imageService.saveImage(image);
             product.setImage(image);
         }
-
         productService.saveProduct(product);
     }
 
@@ -79,7 +68,6 @@ public class ProductsService {
         Product product = productService.getProductProfileBy(productId);
         product.setStatus(Status.DELETED.getLetter());
         productService.saveProduct(product);
-
     }
 
     public void updateProductProfile(Integer productId, ProductBasicProfile productRequest) {
@@ -87,20 +75,25 @@ public class ProductsService {
         productMapper.partialUpdate(productRequest, product);
         productService.saveProduct(product);
     }
-
-    //todo Changed from Post to Put.
+// todo extract methods
     public void modifyProductPicture(Integer productId, ImageRequest imageRequest) {
         String imageData = imageRequest.getImageData();
+        Product product = productService.findProductBy(productId);
 
-        if (!imageData.isEmpty()) {
-            Product product = productService.findProductBy(productId);
-
+        if (!imageData.isEmpty() && product.getId() != null) {
+            // find ImageId to overwrite.
+            Image existingImage = product.getImage();
+            Integer existingImageId = existingImage.getId();
+            // convert Image request to to an Image object with ImageData as a Byte array
             Image image = ImageConverter.imageDataToImage(imageData);
-            imageService.saveImage(image);
-            product.setImage(image);
-            productService.saveProduct(product);
+            image.setId(existingImageId); // add the existing image id to new image to be save
+            imageService.saveImage(image); // save the image object
+            product.setImage(image);    // add the image object to the found product.
+            productService.saveProduct(product); // save the product.
         } else {
-            return;
+
+            // run no image to add or file empty.
         }
     }
+
 }

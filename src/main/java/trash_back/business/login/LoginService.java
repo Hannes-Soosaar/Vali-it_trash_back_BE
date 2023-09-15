@@ -14,10 +14,8 @@ public class LoginService {
     private UserMapper userMapper;
 
     public LoginResponse login(String email, String password) {
-
         User user = userService.findActiveUserBy(email, password);
         return userMapper.toLoginResponse(user);
-
     }
 
 }
