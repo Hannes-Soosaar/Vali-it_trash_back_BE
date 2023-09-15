@@ -37,6 +37,9 @@ public class ProductsService {
     @Resource
     private ProductMaterialMapper productMaterialMapper;
 
+    @Resource
+    private ImageService imageService;
+
 
     @Resource
     private CompanyService companyService;
