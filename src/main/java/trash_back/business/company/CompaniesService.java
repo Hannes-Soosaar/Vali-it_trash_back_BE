@@ -57,6 +57,7 @@ public class CompaniesService {
 
         companyService.validateCompanyNameIsAvailable(companyRequest.getCompanyName());
 
+
         // TODO: 11.09.2023 Otsi ylesse roll "user".  RoleService -> RoleRepository (useri roleid on 2)
         Role role = roleService.getRoleUser();
         // user mapperi abil tekitad uue user objekti, saad ära täita väljad email, password ja status
@@ -66,7 +67,10 @@ public class CompaniesService {
         user.setRole(role);
         // nüüd saad useri ära salvestada (userService --> userRepository)
         userService.saveUser(user);
+
         //
+
+
         // TODO: 11.09.2023 companyMapperi abil tekitad uue company objekti. Dtost mapid ära nii palju andmeid kui saad
         Company company = companyMapper.toCompany(companyRequest);
         // nüüd saad company objektile panna külge user objekti(foreign key)
