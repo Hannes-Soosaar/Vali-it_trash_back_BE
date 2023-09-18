@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import trash_back.business.product.dto.ProductBasicProfile;
 import trash_back.business.product.image.ImageResponse;
+import trash_back.domain.product.ProductResponse;
 import trash_back.infrastructure.error.ApiError;
 
 import java.util.List;
@@ -40,8 +41,9 @@ public class ProductsController {
 
     @PostMapping("")
     @Operation(summary = "Uue toote lisamine", description = "toote nimetus, upc, lisainfo, staatus, pilt")
-    public void addProductProfile(@RequestBody ProductRequest productRequest) {
-        productsService.addProductProfile(productRequest);
+    public ProductResponse addProductProfile(@RequestBody ProductRequest productRequest) {
+        ProductResponse productResponse = productsService.addProductProfile(productRequest);
+        return productResponse;
     }
 
     @DeleteMapping("")

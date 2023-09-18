@@ -11,6 +11,7 @@ import trash_back.business.product.dto.ProductBasicProfile;
 import trash_back.business.product.image.ImageResponse;
 import trash_back.domain.company.CompanyService;
 import trash_back.business.product.dto.material.MaterialInfo;
+import trash_back.domain.product.ProductResponse;
 import trash_back.domain.product.image.Image;
 import trash_back.domain.product.Product;
 import trash_back.domain.product.ProductMapper;
@@ -51,7 +52,7 @@ public class ProductsService {
     }
 
     @Transactional
-    public void addProductProfile(ProductRequest productRequest) {
+    public ProductResponse addProductProfile(ProductRequest productRequest) {
         String imageData = productRequest.getImageData();
         Product product = productMapper.toProduct(productRequest);
         product.setCompany(companyService.getCompanyBy(productRequest.getUserId()));
@@ -62,6 +63,9 @@ public class ProductsService {
             product.setImage(image);
         }
         productService.saveProduct(product);
+        ProductResponse productResponse = new ProductResponse();
+        productResponse.setProductId(product.getId());
+        return productResponse;
     }
 
 
@@ -99,6 +103,7 @@ public class ProductsService {
 
     public ImageResponse getProductImage(Integer productId) {
         Product product = productService.getValidProductBy(productId);
+
         return productMapper.toImageResponse(product);
     }
 
