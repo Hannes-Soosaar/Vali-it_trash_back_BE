@@ -61,5 +61,8 @@ public interface ProductMapper {
     static String imageToImageData(Image image) {
         return ImageConverter.imageToImageData(image);
     }
-
 }
+
+
+
+
