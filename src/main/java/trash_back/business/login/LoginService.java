@@ -8,8 +8,12 @@ import trash_back.domain.user.UserService;
 
 @Service
 public class LoginService {
+
+
+
     @Resource
     private UserService userService;
+
     @Resource
     private UserMapper userMapper;
 
@@ -17,5 +21,6 @@ public class LoginService {
         User user = userService.findActiveUserBy(email, password);
         return userMapper.toLoginResponse(user);
     }
+
 
 }

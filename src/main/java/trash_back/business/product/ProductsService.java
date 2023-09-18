@@ -2,7 +2,6 @@ package trash_back.business.product;
 
 import jakarta.annotation.Resource;
 import jakarta.transaction.Transactional;
-import org.mapstruct.Mapping;
 import org.springframework.stereotype.Service;
 import trash_back.business.product.dto.ImageRequest;
 import trash_back.business.login.Status;
@@ -14,7 +13,6 @@ import trash_back.domain.company.CompanyService;
 import trash_back.business.product.dto.material.MaterialInfo;
 import trash_back.domain.product.*;
 import trash_back.domain.product.image.Image;
-import trash_back.domain.company.Company;
 import trash_back.domain.product.Product;
 import trash_back.domain.product.ProductMapper;
 import trash_back.domain.product.ProductService;
@@ -79,10 +77,10 @@ public class ProductsService {
         productMapper.partialUpdate(productRequest, product);
         productService.saveProduct(product);
     }
-// todo extract methods
+
     public void modifyProductPicture(Integer productId, ImageRequest imageRequest) {
         String imageData = imageRequest.getImageData();
-        Product product = productService.findProductBy(productId);
+        Product product = productService.getValidProductBy(productId);
 
         if (!imageData.isEmpty() && product.getId() != null) {
             // find ImageId to overwrite.
@@ -104,5 +102,6 @@ public class ProductsService {
         Product product = productService.findProductBy(productId);
         return productMapper.toImageResponse(product);
     }
+
 }
 
