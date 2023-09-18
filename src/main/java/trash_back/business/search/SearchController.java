@@ -31,16 +31,28 @@ public class SearchController {
 //    }
 
 
-    @GetMapping("")
+    @GetMapping("product")
     @Operation(summary = "Toote info ja sorteerimisjuhiste otsimine UPC järgi",
             description = "tagastab productId, toote nime, toote info, pildi, prügikasti nime, värvi ja materjalinime ")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK"),
-            @ApiResponse(responseCode = "404", description = "Ei leitud ühtegi toodet",
+            @ApiResponse(responseCode = "555", description = "Toode puudub andmebaasist",
                     content = @Content(schema = @Schema(implementation = ApiError.class)))})
     public SearchResultUpc searchProductAndRecyclingInfo(@RequestParam String upc) {
        return searchService.searchProductAndRecyclingInfo(upc);
 
+
+    }
+
+    @GetMapping("material")
+    @Operation(summary = "Materjali nime järgi otsimine",
+            description = "Otsing tagastab materjalitüübi, prügikasti nime, prügikasti värvi ja prügikasti info. Pilt tuleb frontist.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK"),
+            @ApiResponse(responseCode = "???", description = "Materjal puudub andmebaasist",
+                    content = @Content(schema = @Schema(implementation = ApiError.class)))})
+
+    public void searchMaterialInfo () {
 
     }
 
