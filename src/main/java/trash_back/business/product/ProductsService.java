@@ -99,7 +99,7 @@ public class ProductsService {
     }
 
     public ImageResponse getProductImage(Integer productId) {
-        Product product = productService.findProductBy(productId);
+        Product product = productService.getValidProductBy(productId);
         return productMapper.toImageResponse(product);
     }
 
