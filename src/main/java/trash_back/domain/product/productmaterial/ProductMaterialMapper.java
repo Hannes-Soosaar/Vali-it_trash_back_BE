@@ -1,4 +1,4 @@
-package trash_back.domain.product.material;
+package trash_back.domain.product.productmaterial;
 
 import org.mapstruct.*;
 import trash_back.business.product.dto.material.MaterialInfo;

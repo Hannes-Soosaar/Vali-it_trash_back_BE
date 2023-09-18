@@ -10,7 +10,7 @@ import trash_back.business.search.dto.SearchResultUpc;
 import trash_back.domain.product.image.Image;
 import trash_back.util.ImageConverter;
 import trash_back.business.product.dto.material.MaterialInfo;
-import trash_back.domain.product.material.ProductMaterial;
+import trash_back.domain.product.productmaterial.ProductMaterial;
 
 import java.util.List;
 

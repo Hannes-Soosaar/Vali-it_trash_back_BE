@@ -1,4 +1,4 @@
-package trash_back.domain.product.material;
+package trash_back.domain.product.productmaterial;
 
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;

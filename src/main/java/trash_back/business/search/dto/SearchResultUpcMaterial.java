@@ -3,7 +3,7 @@ package trash_back.business.search.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import trash_back.domain.product.material.ProductMaterial;
+import trash_back.domain.product.productmaterial.ProductMaterial;
 
 import java.io.Serializable;
 
