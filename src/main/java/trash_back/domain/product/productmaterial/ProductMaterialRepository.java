@@ -1,4 +1,4 @@
-package trash_back.domain.product.material;
+package trash_back.domain.product.productmaterial;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

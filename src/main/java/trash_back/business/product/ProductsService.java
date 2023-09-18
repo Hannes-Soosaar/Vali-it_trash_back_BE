@@ -11,15 +11,14 @@ import trash_back.business.product.dto.ProductBasicProfile;
 import trash_back.business.product.image.ImageResponse;
 import trash_back.domain.company.CompanyService;
 import trash_back.business.product.dto.material.MaterialInfo;
-import trash_back.domain.product.*;
 import trash_back.domain.product.image.Image;
 import trash_back.domain.product.Product;
 import trash_back.domain.product.ProductMapper;
 import trash_back.domain.product.ProductService;
 import trash_back.domain.product.image.ImageService;
-import trash_back.domain.product.material.ProductMaterial;
-import trash_back.domain.product.material.ProductMaterialMapper;
-import trash_back.domain.product.material.ProductMaterialService;
+import trash_back.domain.product.productmaterial.ProductMaterial;
+import trash_back.domain.product.productmaterial.ProductMaterialMapper;
+import trash_back.domain.product.productmaterial.ProductMaterialService;
 import trash_back.util.ImageConverter;
 
 import java.util.List;

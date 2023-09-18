@@ -1,4 +1,4 @@
-package trash_back.domain.product.material.properties;
+package trash_back.domain.product.material.bin.color;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -9,8 +9,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "category")
-public class Category {
+@Table(name = "color")
+public class Color {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)

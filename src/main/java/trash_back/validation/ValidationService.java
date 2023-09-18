@@ -1,8 +1,10 @@
 package trash_back.validation;
 
 import trash_back.domain.product.Product;
+import trash_back.domain.product.material.Material;
 import trash_back.domain.user.User;
 import trash_back.infrastructure.exception.BusinessException;
+import trash_back.infrastructure.exception.DataNotFoundException;
 
 import java.util.Optional;
 
@@ -39,8 +41,15 @@ public class ValidationService {
 
     public static Product getValidProduct(Optional<Product> optionalProduct) {
         if (optionalProduct.isEmpty()) {
-            throw new BusinessException("Toode puudub andmebaasist", 555);
+            throw new DataNotFoundException("Toode puudub andmebaasist", 555);
         }
         return optionalProduct.get();
+    }
+
+    public static Material getValidMaterial(Optional<Material> optionalMaterial) {
+        if (optionalMaterial.isEmpty()) {
+            throw new DataNotFoundException("Materjal puudub andmebaasist", 666);
+        }
+        return optionalMaterial.get();
     }
 }
