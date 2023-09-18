@@ -1,10 +1,11 @@
-package trash_back.domain.product;
+package trash_back.business.product.dto;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import trash_back.domain.product.Product;
 
 import java.io.Serializable;
 

@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import trash_back.domain.product.ProductBasicProfile;
-import trash_back.domain.product.ProductService;
+import trash_back.business.product.dto.ProductBasicProfile;
+import trash_back.business.product.image.ImageResponse;
 import trash_back.infrastructure.error.ApiError;
 
 import java.util.List;
@@ -58,9 +58,16 @@ public class ProductsController {
     }
 
     @PutMapping("/product-image")
-    @Operation(summary = "tootle pildi muutmine", description = "toote id alusel laetakse ylsesse imageData")
+    @Operation(summary = "tootele pildi muutmine", description = "toote id alusel laetakse ylsesse imageData")
     public void modifyProductPicture(@RequestParam Integer productId, @RequestBody ImageRequest imageRequest) {
         productsService.modifyProductPicture(productId, imageRequest);
+    }
+
+    @GetMapping("/product-get-image")
+    @Operation(summary = "toob ära productId järgi toote pildi")
+    public ImageResponse getProductImage(@RequestParam Integer productId) {
+        return productsService.getProductImage(productId);
+
     }
 
 }

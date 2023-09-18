@@ -2,20 +2,17 @@ package trash_back.business.product;
 
 import jakarta.annotation.Resource;
 import jakarta.transaction.Transactional;
-import org.mapstruct.Mapping;
 import org.springframework.stereotype.Service;
 import trash_back.business.product.dto.ImageRequest;
 import trash_back.business.login.Status;
 import trash_back.business.product.dto.ProductProfile;
 import trash_back.business.product.dto.ProductRequest;
+import trash_back.business.product.dto.ProductBasicProfile;
+import trash_back.business.product.image.ImageResponse;
 import trash_back.domain.company.CompanyService;
 import trash_back.business.product.dto.material.MaterialInfo;
-import trash_back.domain.product.ProductBasicProfile;
+import trash_back.domain.product.*;
 import trash_back.domain.product.image.Image;
-import trash_back.domain.company.Company;
-import trash_back.domain.product.Product;
-import trash_back.domain.product.ProductMapper;
-import trash_back.domain.product.ProductService;
 import trash_back.domain.product.image.ImageService;
 import trash_back.domain.product.material.ProductMaterial;
 import trash_back.domain.product.material.ProductMaterialMapper;
@@ -103,4 +100,10 @@ public class ProductsService {
             return;
         }
     }
+
+    public ImageResponse getProductImage(Integer productId) {
+        Product product = productService.findProductBy(productId);
+        return productMapper.toImageResponse(product);
+    }
 }
+

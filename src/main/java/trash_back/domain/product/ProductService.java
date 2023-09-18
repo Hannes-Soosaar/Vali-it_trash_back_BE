@@ -31,9 +31,6 @@ public class ProductService {
         productRepository.save(product);
     }
 
-    public Company getCompanyBy(Integer companyId) {
-        return companyRepository.getReferenceById(companyId);
-    }
 
     public Product getProductProfileBy(Integer productId) {
         return productRepository.getReferenceById(productId);
