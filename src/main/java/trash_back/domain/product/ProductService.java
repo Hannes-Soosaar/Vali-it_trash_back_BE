@@ -30,10 +30,7 @@ public class ProductService {
     public void saveProduct(Product product) {
         productRepository.save(product);
     }
-    //todo why is this not used
-    public Company getCompanyBy(Integer companyId) {
-        return companyRepository.getReferenceById(companyId);
-    }
+
 
     public Product getProductProfileBy(Integer productId) {
         return productRepository.getReferenceById(productId);

@@ -3,6 +3,8 @@ package trash_back.domain.product;
 import org.mapstruct.*;
 import trash_back.business.product.dto.ProductProfile;
 import trash_back.business.product.dto.ProductRequest;
+import trash_back.business.product.dto.ProductBasicProfile;
+import trash_back.business.product.image.ImageResponse;
 import trash_back.business.search.dto.ProductSearchResultByUpc;
 import trash_back.domain.product.image.Image;
 import trash_back.util.ImageConverter;
@@ -45,9 +47,14 @@ public interface ProductMapper {
     @Mapping(source = "info", target = "info")
     ProductSearchResultByUpc toProductSearchResult(Product product);
 
+    @Mapping(source = "image", target = "imageData", qualifiedByName = "imageToImageData")
+    ImageResponse toImageResponse(Product product);
+
+
     @Named("imageToImageData")
     static String imageToImageData(Image image) {
         return ImageConverter.imageToImageData(image);
     }
+
 
 }
