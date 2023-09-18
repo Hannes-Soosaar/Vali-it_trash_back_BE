@@ -32,9 +32,15 @@ public class SearchController {
 
 
     @GetMapping("")
-
+    @Operation(summary = "Toote info ja sorteerimisjuhiste otsimine UPC järgi",
+            description = "tagastab productId, toote nime, toote info, pildi, prügikasti nime, värvi ja materjalinime ")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK"),
+            @ApiResponse(responseCode = "404", description = "Ei leitud ühtegi toodet",
+                    content = @Content(schema = @Schema(implementation = ApiError.class)))})
     public SearchResultUpc searchProductAndRecyclingInfo(@RequestParam String upc) {
        return searchService.searchProductAndRecyclingInfo(upc);
+
 
     }
 
