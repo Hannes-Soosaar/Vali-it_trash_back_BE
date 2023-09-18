@@ -125,22 +125,22 @@ VALUES (DEFAULT, 5, 5, 'biolagunev');
 
 --Insert data into the 'product
 INSERT INTO PRODUCT (ID, COMPANY_ID, IMAGE_ID, NAME, UPC, INFO, STATUS)
-VALUES (DEFAULT, 2, 1, 'Hapukoor 20% kiles, ALMA, 500 g', '4740125410020', 'pese ja utiliseeri', 'A');
+VALUES (DEFAULT, 1, 1, 'Hapukoor 20% kiles, ALMA, 500 g', '4740125410020', 'pese ja utiliseeri', 'A');
 INSERT INTO PRODUCT (ID, COMPANY_ID, IMAGE_ID, NAME, UPC, INFO, STATUS)
-VALUES (DEFAULT, 1, 2, 'Pidulik valik šokolaadikomme, KALEV, 435 g', '4740012028666',
+VALUES (DEFAULT, 2, 2, 'Pidulik valik šokolaadikomme, KALEV, 435 g', '4740012028666',
         'indidvuaalsed kommialused on oleme.', 'A');
 INSERT INTO PRODUCT (ID, COMPANY_ID, IMAGE_ID, NAME, UPC, INFO, STATUS)
 VALUES (DEFAULT, 3, 3, 'Must tee Yellow Label niidiga kotis', '8711200461646',
         'Kasutatud teekottid visata olme prügisse', 'A');
 INSERT INTO PRODUCT (ID, COMPANY_ID, IMAGE_ID, NAME, UPC, INFO, STATUS)
-VALUES (DEFAULT, 1, 4, 'Barbarissimaitseline karamell, KALEV', '4740012600121', 'individuaalsed pakendid on olmeprügi',
+VALUES (DEFAULT, 2, 4, 'Barbarissimaitseline karamell, KALEV', '4740012600121', 'individuaalsed pakendid on olmeprügi',
         'A');
 INSERT INTO PRODUCT (ID, COMPANY_ID, IMAGE_ID, NAME, UPC, INFO, STATUS)
-VALUES (DEFAULT, 2, 5, 'Koorejogurt Muah stracciatella', '4740125535853'
+VALUES (DEFAULT, 1, 5, 'Koorejogurt Muah stracciatella', '4740125535853'
        , 'Sorteeri eraldi kaas, paber ümbris ja ' ||
          'utiliseeri eraldi.', 'A');
 INSERT INTO PRODUCT (ID, COMPANY_ID, IMAGE_ID, NAME, UPC, INFO, STATUS)
-VALUES (DEFAULT, 2, 6, e'Jogurtijook ploomi-jäätisemaitseline, ALMA, 275 g
+VALUES (DEFAULT, 1, 6, e'Jogurtijook ploomi-jäätisemaitseline, ALMA, 275 g
 ', '4740125582772', 'pese ja utiliseeri pudel koos korgiga', 'A');
 
 INSERT INTO PRODUCT_MATERIAL (ID, PRODUCT_ID, MATERIAL_ID)
