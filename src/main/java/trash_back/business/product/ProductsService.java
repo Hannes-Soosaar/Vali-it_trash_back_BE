@@ -105,7 +105,6 @@ public class ProductsService {
             product.setImage(image);    // add the image object to the found product.
             productService.saveProduct(product); // save the product.
         } else {
-
             // run no image to add or file empty.
         }
     }
