@@ -39,7 +39,7 @@ public class ProductsService {
     private CompanyService companyService;
 
     public List<ProductProfile> getProductProfiles(Integer companyId) {
-        List<Product> products = productService.findProductProfileBy(companyId);
+        List<Product> products = productService.findActiveProductsBy(companyId);
         List<ProductProfile> productProfiles = productMapper.toProductProfiles(products);
 
         for (ProductProfile productProfile : productProfiles) {
@@ -48,6 +48,15 @@ public class ProductsService {
             productProfile.setMaterials(materialInfos);
         }
         return productProfiles;
+    }
+
+    public ProductProfile getProductProfile(Integer productId) {
+        Product product = productService.getProductBy(productId);
+        ProductProfile productProfile = productMapper.toProductProfile(product);
+        List<ProductMaterial> materials = productMaterialService.findMaterialsBy(productId);
+        List<MaterialInfo> materialInfos = productMaterialMapper.toMaterialInfos(materials);
+        productProfile.setMaterials(materialInfos);
+        return productProfile;
     }
 
     @Transactional
@@ -66,20 +75,20 @@ public class ProductsService {
 
 
     public void deleteProductProfile(Integer productId) {
-        Product product = productService.getProductProfileBy(productId);
+        Product product = productService.getProductBy(productId);
         product.setStatus(Status.DELETED.getLetter());
         productService.saveProduct(product);
     }
 
     public void updateProductProfile(Integer productId, ProductBasicProfile productRequest) {
-        Product product = productService.getProductProfileBy(productId);
+        Product product = productService.getProductBy(productId);
         productMapper.partialUpdate(productRequest, product);
         productService.saveProduct(product);
     }
 
     public void modifyProductPicture(Integer productId, ImageRequest imageRequest) {
         String imageData = imageRequest.getImageData();
-        Product product = productService.getValidProductBy(productId);
+        Product product = productService.getValidActiveProductBy(productId);
 
         if (!imageData.isEmpty() && product.getId() != null) {
             // find ImageId to overwrite.
@@ -98,9 +107,10 @@ public class ProductsService {
     }
 
     public ImageResponse getProductImage(Integer productId) {
-        Product product = productService.getValidProductBy(productId);
+        Product product = productService.getValidActiveProductBy(productId);
         return productMapper.toImageResponse(product);
     }
+
 
 }
 

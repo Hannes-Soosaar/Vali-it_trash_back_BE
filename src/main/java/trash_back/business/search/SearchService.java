@@ -64,7 +64,7 @@ public class SearchService {
 
 
     public SearchResultUpc searchProductAndRecyclingInfo(String upc) {
-        Product product = productService.getValidProductBy(upc);
+        Product product = productService.getValidActiveProductBy(upc);
         SearchResultUpc searchResultUpc = productMapper.toSearchResultUpc(product);
 
         Integer productId = product.getId();

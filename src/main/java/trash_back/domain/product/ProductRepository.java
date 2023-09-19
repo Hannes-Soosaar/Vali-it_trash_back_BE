@@ -7,20 +7,15 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ProductRepository extends JpaRepository<Product, Integer> {
-    @Query("select p from Product p where p.company.id = ?1 order by p.name")
-    List<Product> findProductsBy(Integer companyId);
-
-    @Query("select p from Product p where p.upc = ?1")
-    Optional<Product> findProductBy(String upc);
 
     @Query("select p from Product p where p.id = ?1")
     Product findProductBy(Integer productId);
 
     @Query("select p from Product p where p.upc = ?1 and p.status = ?2")
-    Optional<Product> findActiveProductBy(String upc, String status);
+    Optional<Product> findProductBy(String upc, String status);
 
     @Query("select p from Product p where p.company.id = ?1 and p.status = ?2")
-    List<Product> findActiveProductsBy(Integer id, String status);
+    List<Product> findProductsBy(Integer companyId, String status);
 
 
 }

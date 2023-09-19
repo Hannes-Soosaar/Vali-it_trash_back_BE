@@ -15,8 +15,8 @@ public class ProductService {
     private ProductRepository productRepository;
 
 
-    public List<Product> findProductProfileBy(Integer companyId) {
-        return productRepository.findActiveProductsBy(companyId, Status.ACTIVE.getLetter());
+    public List<Product> findActiveProductsBy(Integer companyId) {
+        return productRepository.findProductsBy(companyId, Status.ACTIVE.getLetter());
     }
 
     // todo need to add Company to the Product.
@@ -25,16 +25,16 @@ public class ProductService {
     }
 
 
-    public Product getProductProfileBy(Integer productId) {
+    public Product getProductBy(Integer productId) {
         return productRepository.getReferenceById(productId);
     }
 
-    public Product getValidProductBy(Integer productId) {
+    public Product getValidActiveProductBy(Integer productId) {
         return productRepository.findProductBy(productId);
     }
 
-    public Product getValidProductBy(String upc) {
-        Optional<Product> optionalProduct = productRepository.findActiveProductBy(upc, Status.ACTIVE.getLetter());
+    public Product getValidActiveProductBy(String upc) {
+        Optional<Product> optionalProduct = productRepository.findProductBy(upc, Status.ACTIVE.getLetter());
         return ValidationService.getValidProduct(optionalProduct);
     }
 }
