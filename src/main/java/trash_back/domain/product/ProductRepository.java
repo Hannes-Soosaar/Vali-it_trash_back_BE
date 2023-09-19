@@ -16,6 +16,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Query("select p from Product p where p.id = ?1")
     Product findProductBy(Integer productId);
 
-
+    @Query("select p from Product p where p.upc = ?1 and p.status = ?2")
+    Optional<Product> findActiveProductBy(String upc, String status);
 
 }

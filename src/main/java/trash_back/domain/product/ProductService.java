@@ -2,6 +2,7 @@ package trash_back.domain.product;
 
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
+import trash_back.business.login.Status;
 import trash_back.validation.ValidationService;
 
 import java.util.List;
@@ -33,7 +34,7 @@ public class ProductService {
     }
 
     public Product getValidProductBy(String upc) {
-        Optional<Product> optionalProduct = productRepository.findProductBy(upc);
+        Optional<Product> optionalProduct = productRepository.findActiveProductBy(upc, Status.ACTIVE.getLetter());
         return ValidationService.getValidProduct(optionalProduct);
     }
 }
