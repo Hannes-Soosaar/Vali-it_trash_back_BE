@@ -16,7 +16,7 @@ public class ProductService {
 
 
     public List<Product> findProductProfileBy(Integer companyId) {
-        return productRepository.findProductsBy(companyId);
+        return productRepository.findActiveProductsBy(companyId, Status.ACTIVE.getLetter());
     }
 
     // todo need to add Company to the Product.
