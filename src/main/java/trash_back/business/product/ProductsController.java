@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import trash_back.business.product.dto.ProductBasicProfile;
 import trash_back.business.product.image.ImageResponse;
+import trash_back.domain.product.ProductResponse;
 import trash_back.infrastructure.error.ApiError;
 
 import java.util.List;
@@ -27,8 +28,8 @@ public class ProductsController {
     @Resource
     private ProductsService productsService;
 
-    @GetMapping("")
-    @Operation(summary = "tagastab tooteprofiilid ja iga tooted materjalid",
+    @GetMapping
+    @Operation(summary = "tagastab toodete profiilid ja toodete materjalid",
             description = "companyId järgi saab kätte tooteprofiili(d); juurde lisatud materjali id, nimi ja kategooria nimi")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK"),
@@ -38,20 +39,33 @@ public class ProductsController {
         return productsService.getProductProfiles(companyId);
     }
 
-    @PostMapping("")
-    @Operation(summary = "Uue toote lisamine", description = "toote nimetus, upc, lisainfo, staatus, pilt")
-    public void addProductProfile(@RequestBody ProductRequest productRequest) {
-        productsService.addProductProfile(productRequest);
+    @GetMapping("/product")
+    @Operation(summary = "tagastab tooteprofiili ja toote materjalid")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK"),
+            @ApiResponse(responseCode = "404", description = "Ei leitud ühtegi toodet",
+                    content = @Content(schema = @Schema(implementation = ApiError.class)))})
+    public ProductProfile getProductProfile(@RequestParam Integer productId) {
+        return productsService.getProductProfile(productId);
     }
 
-    @DeleteMapping("")
+
+
+    @PostMapping
+    @Operation(summary = "Uue toote lisamine", description = "toote nimetus, upc, lisainfo, staatus, pilt")
+    public ProductResponse addProductProfile(@RequestBody ProductRequest productRequest) {
+        ProductResponse productResponse = productsService.addProductProfile(productRequest);
+        return productResponse;
+    }
+
+    @DeleteMapping
     @Operation(summary = "Toote kustutamine", description = "muudab toote staatuse D ehk mitteaktiivseks. Ei kustuta andmebaasist! ")
     public void deleteProductProfile(@RequestParam Integer productId) {
         productsService.deleteProductProfile(productId);
 
     }
 
-    @PutMapping("")
+    @PutMapping
     @Operation(summary = "Toote muutmine", description = "productId abil muudab product tabelis andmeid")
     public void updateProductProfile(@RequestParam Integer productId, @RequestBody ProductBasicProfile productRequest) {
         productsService.updateProductProfile(productId, productRequest);
@@ -69,5 +83,7 @@ public class ProductsController {
         return productsService.getProductImage(productId);
 
     }
+
+
 
 }

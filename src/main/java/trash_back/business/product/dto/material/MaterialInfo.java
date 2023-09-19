@@ -17,4 +17,6 @@ public class MaterialInfo implements Serializable {
     private Integer materialId;
     private String materialCategoryName;
     private String materialName;
+    private String materialBinName;
+    private String materialBinColorName;
 }

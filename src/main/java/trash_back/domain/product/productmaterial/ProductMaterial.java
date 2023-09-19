@@ -27,4 +27,5 @@ public class ProductMaterial {
     @JoinColumn(name = "material_id", nullable = false)
     private Material material;
 
+
 }

@@ -11,6 +11,7 @@ import trash_back.business.product.dto.ProductBasicProfile;
 import trash_back.business.product.image.ImageResponse;
 import trash_back.domain.company.CompanyService;
 import trash_back.business.product.dto.material.MaterialInfo;
+import trash_back.domain.product.ProductResponse;
 import trash_back.domain.product.image.Image;
 import trash_back.domain.product.Product;
 import trash_back.domain.product.ProductMapper;
@@ -39,7 +40,7 @@ public class ProductsService {
     private CompanyService companyService;
 
     public List<ProductProfile> getProductProfiles(Integer companyId) {
-        List<Product> products = productService.findProductProfileBy(companyId);
+        List<Product> products = productService.findActiveProductsBy(companyId);
         List<ProductProfile> productProfiles = productMapper.toProductProfiles(products);
 
         for (ProductProfile productProfile : productProfiles) {
@@ -50,8 +51,17 @@ public class ProductsService {
         return productProfiles;
     }
 
+    public ProductProfile getProductProfile(Integer productId) {
+        Product product = productService.getProductBy(productId);
+        ProductProfile productProfile = productMapper.toProductProfile(product);
+        List<ProductMaterial> materials = productMaterialService.findMaterialsBy(productId);
+        List<MaterialInfo> materialInfos = productMaterialMapper.toMaterialInfos(materials);
+        productProfile.setMaterials(materialInfos);
+        return productProfile;
+    }
+
     @Transactional
-    public void addProductProfile(ProductRequest productRequest) {
+    public ProductResponse addProductProfile(ProductRequest productRequest) {
         String imageData = productRequest.getImageData();
         Product product = productMapper.toProduct(productRequest);
         product.setCompany(companyService.getCompanyBy(productRequest.getUserId()));
@@ -62,24 +72,27 @@ public class ProductsService {
             product.setImage(image);
         }
         productService.saveProduct(product);
+        ProductResponse productResponse = new ProductResponse();
+        productResponse.setProductId(product.getId());
+        return productResponse;
     }
 
 
     public void deleteProductProfile(Integer productId) {
-        Product product = productService.getProductProfileBy(productId);
+        Product product = productService.getProductBy(productId);
         product.setStatus(Status.DELETED.getLetter());
         productService.saveProduct(product);
     }
 
     public void updateProductProfile(Integer productId, ProductBasicProfile productRequest) {
-        Product product = productService.getProductProfileBy(productId);
+        Product product = productService.getProductBy(productId);
         productMapper.partialUpdate(productRequest, product);
         productService.saveProduct(product);
     }
 
     public void modifyProductPicture(Integer productId, ImageRequest imageRequest) {
         String imageData = imageRequest.getImageData();
-        Product product = productService.getValidProductBy(productId);
+        Product product = productService.getValidActiveProductBy(productId);
 
         if (!imageData.isEmpty() && product.getId() != null) {
             // find ImageId to overwrite.
@@ -98,7 +111,7 @@ public class ProductsService {
     }
 
     public ImageResponse getProductImage(Integer productId) {
-        Product product = productService.getValidProductBy(productId);
+        Product product = productService.getValidActiveProductBy(productId);
         return productMapper.toImageResponse(product);
     }
 

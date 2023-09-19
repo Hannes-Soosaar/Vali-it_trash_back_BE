@@ -22,6 +22,8 @@ public interface ProductMaterialMapper {
     @Mapping(source = "material.category.name", target = "materialCategoryName")
     @Mapping(source = "material.name", target = "materialName")
     @Mapping(source = "material.id", target = "materialId")
+    @Mapping(source = "material.bin.name", target = "materialBinName")
+    @Mapping(source = "material.bin.color.name", target = "materialBinColorName")
     MaterialInfo toMaterialInfo(ProductMaterial productMaterial);
 
     @Mapping(source = "material.name", target = "materialName")
