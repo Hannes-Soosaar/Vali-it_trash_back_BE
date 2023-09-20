@@ -48,7 +48,7 @@ public class MaterialsController {
         return materialNames;
     }
 
-    @DeleteMapping("/product-materials")
+    @DeleteMapping("/product-material")
     @Operation(summary = "Kustutab product_materials tabelist seose")
     public void deleteProductMaterial(@RequestParam Integer productMaterialId){
         productMaterialsService.deleteProductMaterial(productMaterialId);
