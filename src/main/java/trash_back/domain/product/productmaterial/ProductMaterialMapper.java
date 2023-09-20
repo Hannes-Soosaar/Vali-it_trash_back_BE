@@ -10,6 +10,7 @@ import java.util.List;
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
 public interface ProductMaterialMapper {
 
+    @Mapping(source = "id", target = "productMaterialId")
     @Mapping(source = "material.name", target = "materialName")
     @Mapping(source = "material.bin.name", target = "materialBinName")
     @Mapping(source = "material.bin.color.name", target = "materialBinColorName")

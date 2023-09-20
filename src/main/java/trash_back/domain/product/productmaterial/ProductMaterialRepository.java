@@ -7,5 +7,11 @@ import java.util.List;
 
 public interface ProductMaterialRepository extends JpaRepository<ProductMaterial, Integer> {
     @Query("select p from ProductMaterial p where p.product.id = ?1")
-    List<ProductMaterial> findProductMaterialBy(Integer productId);
+    List<ProductMaterial> findMaterialsBy(Integer productId);
+
+
+
+
+
+
 }

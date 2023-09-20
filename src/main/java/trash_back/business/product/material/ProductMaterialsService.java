@@ -11,6 +11,7 @@ import trash_back.domain.product.material.MaterialMapper;
 import trash_back.business.product.dto.MaterialNameDto;
 import trash_back.domain.product.productmaterial.ProductMaterial;
 import trash_back.domain.product.productmaterial.ProductMaterialMapper;
+import trash_back.domain.product.productmaterial.ProductMaterialRepository;
 import trash_back.domain.product.productmaterial.ProductMaterialService;
 
 import java.util.List;
@@ -28,6 +29,11 @@ public class ProductMaterialsService {
 
     @Resource
     private MaterialMapper materialMapper;
+    private final ProductMaterialRepository productMaterialRepository;
+
+    public ProductMaterialsService(ProductMaterialRepository productMaterialRepository) {
+        this.productMaterialRepository = productMaterialRepository;
+    }
 
 
     public List<ProductMaterialDto> getProductMaterials(Integer productId) {
@@ -46,6 +52,12 @@ public class ProductMaterialsService {
         List<Material> materialNames = productMaterialService.getMaterialNames(categoryId);
         List <MaterialNameDto> materials = materialMapper.toMaterialName(materialNames);
         return materials;
+
+    }
+
+    public void deleteProductMaterial(Integer productMaterialId) {
+        ProductMaterial productMaterial = productMaterialService.findProductMaterialBy(productMaterialId);
+        productMaterialRepository.delete(productMaterial);
 
     }
 }
