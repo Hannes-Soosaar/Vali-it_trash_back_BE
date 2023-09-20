@@ -14,8 +14,4 @@ public interface MaterialRepository extends JpaRepository<Material, Integer> {
     List<Material> getMaterialsBy(Integer id);
 
 
-
-
-
-
 }

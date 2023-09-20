@@ -19,6 +19,8 @@ public class MaterialService {
 
     }
 
-
+    public Material getMaterialBy(Integer materialId) {
+        return materialRepository.getReferenceById(materialId);
+    }
 }
 

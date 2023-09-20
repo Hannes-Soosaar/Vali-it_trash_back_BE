@@ -35,4 +35,9 @@ public class ProductMaterialService {
         return materialRepository.getMaterialsBy(categoryId);
 
     }
+
+
+    public void saveProductMaterial(ProductMaterial productMaterial) {
+        productMaterialRepository.save(productMaterial);
+    }
 }

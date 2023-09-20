@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import trash_back.business.product.dto.ProductBasicProfile;
 import trash_back.business.product.image.ImageResponse;
 import trash_back.domain.product.ProductResponse;
+import trash_back.domain.product.productmaterial.ProductMaterialService;
 import trash_back.infrastructure.error.ApiError;
 
 import java.util.List;
@@ -27,6 +28,7 @@ public class ProductsController {
 
     @Resource
     private ProductsService productsService;
+
 
     @GetMapping
     @Operation(summary = "tagastab toodete profiilid ja toodete materjalid",
@@ -50,12 +52,10 @@ public class ProductsController {
     }
 
 
-
     @PostMapping
     @Operation(summary = "Uue toote lisamine", description = "toote nimetus, upc, lisainfo, staatus, pilt")
     public ProductResponse addProductProfile(@RequestBody ProductRequest productRequest) {
-        ProductResponse productResponse = productsService.addProductProfile(productRequest);
-        return productResponse;
+        return productsService.addProductProfile(productRequest);
     }
 
     @DeleteMapping

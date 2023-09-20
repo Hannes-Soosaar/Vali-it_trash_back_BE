@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import trash_back.business.product.dto.material.ProductMaterialDto;
@@ -44,6 +45,18 @@ public class MaterialsController {
     public List<MaterialNameDto> getMaterialNames(@RequestParam Integer categoryId) {
         List<MaterialNameDto> materialNames = productMaterialsService.getMaterialNames(categoryId);
         return materialNames;
+    }
+
+    @PostMapping("productmaterial")
+    @Operation(summary = "Materjalide lisamine tootele. Sisse tuleb productId ja materialId")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK"),
+            @ApiResponse(responseCode = "403", description = "",
+                    content = @Content(schema = @Schema(implementation = ApiError.class)))})
+
+    public void addProductMaterial(@RequestParam Integer productId, Integer materialId) {
+        productMaterialsService.addProductMaterial(productId, materialId);
+
     }
 
 }
