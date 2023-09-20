@@ -23,9 +23,8 @@ public class ProductMaterialService {
 
 
     public List<ProductMaterial> findMaterialsBy(Integer productId) {
-        return productMaterialRepository.findProductMaterialBy(productId);
+        return productMaterialRepository.findMaterialsBy(productId);
     }
-
 
     public List<Category> getAllCategoryNames() {
         return categoryRepository.findAll();
@@ -34,5 +33,14 @@ public class ProductMaterialService {
     public List<Material> getMaterialNames(Integer categoryId) {
         return materialRepository.getMaterialsBy(categoryId);
 
+    }
+
+    public ProductMaterial findProductMaterialBy(Integer productMaterialId) {
+        return productMaterialRepository.getReferenceById(productMaterialId);
+    }
+
+
+    public void saveProductMaterial(ProductMaterial productMaterial) {
+        productMaterialRepository.save(productMaterial);
     }
 }

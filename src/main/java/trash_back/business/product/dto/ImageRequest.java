@@ -14,7 +14,6 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ImageRequest implements Serializable {
-    private Integer productId;
-    private Integer imageId;
+
     private String  imageData;
 }
