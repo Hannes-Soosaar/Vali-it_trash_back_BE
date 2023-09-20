@@ -14,6 +14,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProductMaterialDto implements Serializable {
+    private Integer productMaterialId;
     private String materialCategoryName;
     private String materialBinColorName;
     private String materialBinName;

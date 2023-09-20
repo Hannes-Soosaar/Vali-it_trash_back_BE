@@ -14,6 +14,7 @@ import trash_back.business.product.dto.MaterialNameDto;
 import trash_back.domain.product.material.MaterialService;
 import trash_back.domain.product.productmaterial.ProductMaterial;
 import trash_back.domain.product.productmaterial.ProductMaterialMapper;
+import trash_back.domain.product.productmaterial.ProductMaterialRepository;
 import trash_back.domain.product.productmaterial.ProductMaterialService;
 
 import java.util.List;
@@ -31,6 +32,11 @@ public class ProductMaterialsService {
 
     @Resource
     private MaterialMapper materialMapper;
+    private final ProductMaterialRepository productMaterialRepository;
+
+    public ProductMaterialsService(ProductMaterialRepository productMaterialRepository) {
+        this.productMaterialRepository = productMaterialRepository;
+    }
 
     @Resource
     private ProductService productService;
@@ -64,5 +70,11 @@ public class ProductMaterialsService {
         productMaterial.setProduct(product);
         productMaterial.setMaterial(material);
         productMaterialService.saveProductMaterial(productMaterial);
+    }
+
+    public void deleteProductMaterial(Integer productMaterialId) {
+        ProductMaterial productMaterial = productMaterialService.findProductMaterialBy(productMaterialId);
+        productMaterialRepository.delete(productMaterial);
+
     }
 }
