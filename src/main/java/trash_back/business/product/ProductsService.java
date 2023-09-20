@@ -104,9 +104,8 @@ public class ProductsService {
             imageService.saveImage(image); // save the image object
             product.setImage(image);    // add the image object to the found product.
             productService.saveProduct(product); // save the product.
-        } else {
-            // run no image to add or file empty.
         }
+
     }
 
     public ImageResponse getProductImage(Integer productId) {
