@@ -89,7 +89,7 @@ INSERT INTO PRODUCT (ID, COMPANY_ID, IMAGE_ID, NAME, UPC, INFO, STATUS)
 VALUES (DEFAULT, 3, 3, 'Must tee Yellow Label niidiga kotis', '8711200461646',
         'Kasutatud teekotid visata olmeprügisse', 'A');
 INSERT INTO PRODUCT (ID, COMPANY_ID, IMAGE_ID, NAME, UPC, INFO, STATUS)
-VALUES (DEFAULT, 2, 4, 'Barbarissimaitseline karamell, KALEV', '4740012600121', 'Individuaalsed pakendid on olmeprügi',
+VALUES (DEFAULT, 2, 4, 'Barbarissimaitseline karamell, KALEV', '4740012600121', 'Kommipaberid on olmeprügi',
         'A');
 INSERT INTO PRODUCT (ID, COMPANY_ID, IMAGE_ID, NAME, UPC, INFO, STATUS)
 VALUES (DEFAULT, 1, 5, 'Koorejogurt Muah stracciatella', '4740125535853'
